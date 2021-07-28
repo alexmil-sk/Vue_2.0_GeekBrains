@@ -1,12 +1,10 @@
 <template>
 	<div id="app">
-		<img alt="Vue logo" src="./assets/logo.png">
+		<img alt="Vue logo" :src="srcLogo">
 		<HelloWorld
 			msg="Welcome to Your Vue.js App"
-			:is-show= "isShow"
 		/>
-		<v-calculator msg="Calculator (Vue.JS 2.0)" />
-		<Calculator msg="Calculator 2 (Vue.JS 2.0)" />>
+		<v-calculator class="v-calculator" msg="Vue.JS 2.0" />
 
 	</div>
 </template>
@@ -14,15 +12,21 @@
 <script>
 import HelloWorld from './components/HelloWorld.vue';
 import Calculator from './components/v-calculator.vue';
+import logoVue from './assets/logo.png';
 
 export default {
 	name: 'App',
+	data() {
+		return {
+			srcLogo: logoVue,
+		}
+	},
 	components: {
 		HelloWorld,
 		'v-calculator': Calculator,
 		//'Calculator': Calculator
 		//Calculator: Calculator
-		Calculator
+		//Calculator
 	}
 }
 </script>
