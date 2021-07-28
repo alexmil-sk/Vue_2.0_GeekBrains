@@ -144,7 +144,7 @@ export default {
 		this.operand1 = this.operand2 = '';
 	},
 	getClean() {
-		this.result = this.placeholder3
+		this.result = '';
 		this.operand1 = this.placeholder1;
 		this.operand2 = this.placeholder2;
 	}
