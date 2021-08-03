@@ -34,7 +34,7 @@ $marginCenter: 0 auto;
 	}
 	h3 {
 		font-weight: bold;
-		margin: 40px 0 0;
+		margin: 40px 0 0;@change="showKeyboard(e)"
 	}
 	h4 {
 		color: #000;
@@ -54,6 +54,9 @@ $marginCenter: 0 auto;
 	a {
 		color: #42b983;
 	}
+	.red {
+		color: red;
+	}
 	.v-calculator {
 		display: flex;
 		flex-direction: column;
@@ -61,7 +64,7 @@ $marginCenter: 0 auto;
 		border: $border;
 		border-radius: 15px 55px;
 		box-shadow: $boxShadow;
-		width: 330px;
+		width: 345px;
 		height: auto;
 		margin: $marginCenter;
 		margin-top: 40px;
@@ -77,7 +80,6 @@ $marginCenter: 0 auto;
 		span.calc b {
 			transform: scale(2.8);
 		}
-
 		span.operand b {
 			transform: scale(1.8);
 		}
@@ -101,15 +103,35 @@ $marginCenter: 0 auto;
 				font-weight: bold;
 			}
 		}
+		.notes {
+			border: 1px solid #0D6EFD;
+			color: #0D6EFD;
+		}
+		.inactive1 {
+			background-color: #808080;
+			border-color: #808080;
+		}
+		.inactive2 {
+			background-color: #ddd !important;
+			border-color: #808080;
+		}
+		//.noDisplayKeyBoard {
+		//	display: none;
+		//	transition: all 3s ease-out 0s;
+		//}
 		.btn-group {
 			display:flex;
+			flex-wrap: wrap;
 			justify-content: space-between;
-			margin: 20px 0;
+			margin: 20px 2px;
 			.btn {
-				flex-basis: 25%;
-				margin-left:10px;
+				height: 50px;;
+				flex: 0 0 50px;
+				margin: 10px 0px;
 				border-radius:50%;
-				&:first-child {
+				padding: 0;
+				&:first-child,
+				&:nth-child(5) {
 					margin-left: 0;
 				}
 			}
@@ -140,7 +162,62 @@ $marginCenter: 0 auto;
 				color: #333;
 			}
 		}
+		.keyboard {
+			border: 1px solid #808080;
+			background-color: #f1f1f1;
+		}
 
+		.ml-5 {
+			margin-left: 5px;
+		}
+		.mtop-5 {
+			margin-top: 5px;
+		}
+		.mtop-15 {
+			margin-top: 15px;
+		}
+		.mtop-0 {
+			margin-top: 0rem !important;
+		}
+		.mbot-15 {
+			margin-bottom: 15px;
+		}
+		.bold-arrow {
+			font-size: 20px;
+			line-height: 0px;
+		}
+		.bold-del {
+			font-size: 16px;
+			line-height: 0px;
+		}
+		.left {
+			text-align: left;
+		}
+		.flex {
+			display: flex;
+		}
+		.sp-evenly {
+			justify-content:space-evenly;
+		}
+		.border {
+			border: 1px solid #000 !important;
+		}
+		.dark-btn {
+			background-color: #808080;
+			color:#fff;
+		}
+		.plr-3 {
+			padding-left: 3px !important;
+			padding-right: 3px !important;
+		}
+		.plr-4 {
+			padding-left: 4px !important;
+			padding-right: 4px !important;
+		}
+		.plr-6 {
+			padding-left: 6px !important;
+			padding-right: 6px !important;
+		}
 	}
 	
 	
