@@ -17,7 +17,7 @@
 					:placeholder="placeholder1"
 					aria-label="Operand1"
 					aria-describedby="basic-addon1"
-					:value="operand1"
+					v-model.number="operand1"
 				/>
 			</div>
 			
@@ -148,8 +148,8 @@
 				/> 
 				<button
 					:style="{
-						backgroundColor: this.result !== '' ? 'red' : 'gray',
-						border: this.result !== '' ? 'red' : '',
+						backgroundColor: (this.result !== '' || this.operand1 !== this.placeholder1 || this.operand2 !== this.placeholder2) ? 'red' : 'gray',
+						border: (this.result !== '' || this.operand1 !== '' || this.operand2 !== '') ? 'red' : '',
 					}"
 					class="input-group-text btn btn-danger"
 					id="basic-4"
@@ -159,7 +159,7 @@
 			</div>
 			<!-- //,__</ RESULT>------------------------------>
 			<!-- //,__<NOTES>------------------------------>
-			<div class="input-group mb-3" v-if="result">
+			<div class="input-group mb-3" v-if="result !==''">
 				<span class="input-group-text operand btn-primary" id="basic-addon4"><b>&#128441;</b></span>
 				<input
 					type="text"
@@ -186,20 +186,20 @@
 			</div>
 			<!-- //,__</ NOTES>------------------------------>
 			<!-- //, <ФИБОНАЧЧИ ОПЕРАНД1>-------------------------->
-			<div class="input-group mb-3" v-if="result">
-				<span class="input-group-text operand btn-primary" id="basic-addon4"><b>Ф1</b></span>
+			<div class="input-group mb-3" v-if="result !== ''">
+				<span class="input-group-text operand btn-primary" id="basic-addon4-1"><b>Ф1</b></span>
 				<input
 					type="text"
 					class="form-control"
 					:class="{'notes': result}"
 					aria-label="notes"
-					aria-describedby="basic-addon4"
+					aria-describedby="basic-addon4-1"
 					:value="fib1 + ' ( +- операнд )'"
 				/>
 			</div>
-			<div class="input-group mb-3" v-else-if="!result">
+			<div class="input-group mb-3" v-else-if="result !== ''">
 				<span
-					class="input-group-text operand btn-primary" id="basic-addon6"
+					class="input-group-text operand btn-primary" id="basic-addon4-1"
 					:class="{'inactive1': !result}"
 				>
 					<b>&#127845;</b>
@@ -213,20 +213,20 @@
 			</div>
 			<!-- //, </ ФИБОНАЧЧИ ОПЕРАНД1>------------------------->
 			<!-- //, <ФИБОНАЧЧИ ОПЕРАНД2>-------------------------->
-			<div class="input-group mb-3" v-if="result">
-				<span class="input-group-text operand btn-primary" id="basic-addon4"><b>Ф2</b></span>
+			<div class="input-group mb-3" v-if="result !== ''">
+				<span class="input-group-text operand btn-primary" id="basic-addon4-2"><b>Ф2</b></span>
 				<input
 					type="text"
 					class="form-control"
 					:class="{'notes': result}"
 					aria-label="notes"
-					aria-describedby="basic-addon4"
+					aria-describedby="basic-addon4-2"
 					:value="fib2 + ' ( +- операнд )'"
 				/>
 			</div>
 			<div class="input-group mb-3" v-else-if="!result">
 				<span
-					class="input-group-text operand btn-primary" id="basic-addon4"
+					class="input-group-text operand btn-primary" id="basic-addon4-2"
 					:class="{'inactive1': !result}"
 				>
 					<b>&#127845;</b>
@@ -240,7 +240,7 @@
 			</div>
 			<!-- //, </ ФИБОНАЧЧИ ОПЕРАНД2>------------------------->
 			<!-- //, <ФИБОНАЧЧИ ИТОГО>------------------------------>
-			<div class="input-group mb-3" v-if="result">
+			<div class="input-group mb-3" v-if="result !== ''">
 				<span class="input-group-text operand btn-primary" id="basic-addon4"><b>ФИ</b></span>
 				<input
 					type="text"
@@ -325,7 +325,9 @@ export default {
 
 			operand1: '',
 			operand2: '',
-			operands: [],
+			operands1: [],
+			operands2: [],
+
 			result: '',
 			fibResult: 0,
 			notes: '',
@@ -410,7 +412,7 @@ export default {
 			if(this.operand2 === 0 || isNaN(this.operand2) || isNaN(this.operand1) || this.operand1 === '' || this.operand2 === '' ) {
 				this.result = 'Ошибка ввода!!!'
 			} else {
-				this.result = this.operand1 - this.operand2;
+				this.result = +parseInt(this.operand1) - +parseInt(this.operand2);
 				this.fibResult = this.fib1 - this.fib2;
 			}
 		},
@@ -466,14 +468,19 @@ export default {
 			}
 		},
 		getClean() {
-			this.result = '';
-			this.operand1 = this.placeholder1;
-			this.operand2 = this.placeholder2;
+			if (this.radioOperand === 'operand1' || this.radioOperand === 'operand2') {
+				this.result = '';
+				this.operand1 = this.placeholder1;
+				this.operand2 = this.placeholder2;
+				this.operands1 = [];
+				this.operands2 = []
+			}
+
 		},
 		choiceNotes() {
 			if (this.result < 0) {
 				this.notes='Отрицательное число!';
-			} else if (this.result > 0 && this.result < 100) {
+			} else if (this.result >= 0 && this.result < 100) {
 				this.notes='Число меньше ста!';
 			} else if (this.result > 100) {
 				this.notes='Число больше ста!';
@@ -482,36 +489,33 @@ export default {
 			}
 			return this.notes;
 		},
-		//toPrintOperand(keyboardNum) {
-		//	if (this.radioOperand === 'operand1') {
-		//		this.operand1 = keyboardNum;
-		//	} else {
-		//		this.operand2 = keyboardNum;
-		//	}
-		//},
 		toPrintOperand(keyboardNum) {
 			if (this.radioOperand === 'operand1') {
 				//this.operands=[];
-				this.operands.push(keyboardNum);
-				this.operand1 = this.operands.join("");
+				this.operands1.push(keyboardNum);
+				this.operand1 = parseInt(this.operands1.join(""));
 			} else {
 				//this.operands=[];
-				this.operands.push(keyboardNum);
-				this.operand2 = this.operands.join("");
+				this.operands2.push(keyboardNum);
+				this.operand2 = parseInt(this.operands2.join(""));
 			}
 		},
 		delKeyNum() {
 			if (this.radioOperand === 'operand1') {
 				this.operand1 = this.placeholder1;
+				this.operands1 = [];
 			} else {
 				this.operand2 = this.placeholder2;
+				this.operands2 = [];
 			}
 		},
 		cleanNum() {
 			if (this.radioOperand === 'operand1') {
-				this.operand1--;
+				this.operands1 = this.operands1.slice(0, this.operands1.length-1);
+				this.operand1 = parseInt(this.operands1.join(""));
 			} else {
-				this.operand2--;
+				this.operands2 = this.operands2.slice(0, this.operands2.length-1);
+				this.operand2 = parseInt(this.operands2.join(""));
 			}
 		}
 
