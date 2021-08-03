@@ -6,7 +6,7 @@
 			<!-- //,__<OPERAND1>------------------------------>
 			<div class="input-group mb-3">
 				<span class="input-group-text operand" id="basic-addon1"><b>&#35;</b></span>
-				<input 
+				<input
 					:style="{
 						color: this.result === 'Ошибка ввода!!!' ? 'red' : 'gray',
 						background: this.result === 'Ошибка ввода!!!' ? 'yellow' : '',
@@ -17,12 +17,10 @@
 					:placeholder="placeholder1"
 					aria-label="Operand1"
 					aria-describedby="basic-addon1"
-					:value="operand1"
+					v-model.number="operand1"
 				/>
 			</div>
-			
 			<!-- //,__</ OPERAND1>------------------------------>
-		
 			<!-- //,__<OPERATION>------------------------------>
 			<div class="input-group mb-3" v-if="result">
 				<input
@@ -61,76 +59,6 @@
 				/>
 			</div>
 			<!-- //,__</ OPERAND2>------------------------------>
-			<!-- //,__<KEYBOARD>------------------------------>
-				<div class="form-check">
-					<input 
-						class="form-check-input"
-						type="checkbox"
-						value=""
-						id="checkboxKeyboard"
-						v-model="checkedKeyboard"
-					/>
-					<label class="form-check-label mbot-15" for="checkboxKeyboard">
-						Показать экран. клавиатуру</label>
-				</div>
-				<div class="keyboard mbot-15" v-show="checkedKeyboard">
-					<div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
-						<div class="me-0" role="group" aria-label="First group">
-							<button
-								class="btn btn-outline-secondary mtop-5 dark-btn ml-5"
-								v-for="keyboardNum in keyboardNums"
-								:key="keyboardNum"
-								@click="toPrintOperand(keyboardNum)"
-								:disabled="result !== ''"
-							>{{ keyboardNum }}
-							</button>
-							<button
-								type="button"
-								class="btn btn-outline-secondary ml-5 mtop-5 dark-btn plr-6"
-								@click="delKeyNum"
-								:disabled="result !== ''"
-							>
-								<span class="bold-del">Del</span>
-							</button>
-							<button
-								type="button"
-								class="btn btn-outline-dark ml-5 mtop-5 dark-btn plr-6"
-								@click="cleanNum"
-								:disabled="result !== ''"
-							>
-								<span class="bold-arrow">&#8592;</span>
-							</button>
-						</div>
-					</div>
-					<div class="radio-btn flex sp-evenly">
-						<div class="form-check left">
-							<input
-								class="form-check-input"
-								type="radio"
-								value="operand1"
-								id="operand1"
-								checked
-								v-model="radioOperand"
-							/>
-							<label class="form-check-label" for="operand1">
-								Операнд 1
-							</label>
-						</div>
-						<div class="form-check mbot-15 left">
-							<input
-								class="form-check-input"
-								type="radio"
-								value="operand2"
-								id="operand2"
-								v-model="radioOperand"
-							/>
-							<label class="form-check-label" for="operand2">
-								Операнд 2
-							</label>
-						</div>
-					</div>
-				</div>
-			<!-- //,__</ KEYBOARD>------------------------------>
 			<!-- //,__<RESULT>------------------------------>
 			<div class="input-group mb-3">
 				<span class="input-group-text calc" id="basic-addon3"><b>&#128425;</b></span>
@@ -325,7 +253,6 @@ export default {
 
 			operand1: '',
 			operand2: '',
-			operands: [],
 			result: '',
 			fibResult: 0,
 			notes: '',
@@ -337,9 +264,6 @@ export default {
 			}, 
 			myCollection: ['1', '2', '3', '4', '5'],
 			logs: {},
-			keyboardNums: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],
-			checkedKeyboard: false,
-			radioOperand: 'operand1',
 		};
 	},
 	watch: {},
@@ -402,7 +326,7 @@ export default {
 			if(this.operand2 === 0 || this.operand1 === 0 || isNaN(this.operand2) || isNaN(this.operand1) || this.operand1 === '' || this.operand2 === '') {
 				this.result = 'Ошибка ввода!!!'
 			} else {
-				this.result = parseInt(this.operand1) + parseInt(this.operand2);
+				this.result = this.operand1 + this.operand2;
 				this.fibResult = this.fib1 + this.fib2;
 			}
 		},
@@ -482,39 +406,6 @@ export default {
 			}
 			return this.notes;
 		},
-		//toPrintOperand(keyboardNum) {
-		//	if (this.radioOperand === 'operand1') {
-		//		this.operand1 = keyboardNum;
-		//	} else {
-		//		this.operand2 = keyboardNum;
-		//	}
-		//},
-		toPrintOperand(keyboardNum) {
-			if (this.radioOperand === 'operand1') {
-				//this.operands=[];
-				this.operands.push(keyboardNum);
-				this.operand1 = this.operands.join("");
-			} else {
-				//this.operands=[];
-				this.operands.push(keyboardNum);
-				this.operand2 = this.operands.join("");
-			}
-		},
-		delKeyNum() {
-			if (this.radioOperand === 'operand1') {
-				this.operand1 = this.placeholder1;
-			} else {
-				this.operand2 = this.placeholder2;
-			}
-		},
-		cleanNum() {
-			if (this.radioOperand === 'operand1') {
-				this.operand1--;
-			} else {
-				this.operand2--;
-			}
-		}
-
 	},
 	computed: {
 		fib1() {
@@ -522,7 +413,7 @@ export default {
 		},
 		fib2() {
 			return this.fib(this.operand2);
-		}
+	}
 	},
 }
 </script>

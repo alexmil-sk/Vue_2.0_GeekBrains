@@ -17,10 +17,9 @@
 					:placeholder="placeholder1"
 					aria-label="Operand1"
 					aria-describedby="basic-addon1"
-					:value="operand1"
+					v-model.number="operand1"
 				/>
 			</div>
-			
 			<!-- //,__</ OPERAND1>------------------------------>
 		
 			<!-- //,__<OPERATION>------------------------------>
@@ -87,18 +86,18 @@
 							<button
 								type="button"
 								class="btn btn-outline-secondary ml-5 mtop-5 dark-btn plr-6"
+								@click="backSpace"
+								:disabled="result !== ''"
+							>
+								<span class="bold-arrow">&#8592;</span>
+							</button>
+							<button
+								type="button"
+								class="btn btn-outline-secondary ml-5 mtop-5 dark-btn plr-6"
 								@click="delKeyNum"
 								:disabled="result !== ''"
 							>
 								<span class="bold-del">Del</span>
-							</button>
-							<button
-								type="button"
-								class="btn btn-outline-dark ml-5 mtop-5 dark-btn plr-6"
-								@click="cleanNum"
-								:disabled="result !== ''"
-							>
-								<span class="bold-arrow">&#8592;</span>
 							</button>
 						</div>
 					</div>
@@ -323,9 +322,8 @@ export default {
 			placeholder8: 'Фибоначчи операнд 2',
 
 
-			operand1: '',
-			operand2: '',
-			operands: [],
+			operand1: [],
+			operand2: [],
 			result: '',
 			fibResult: 0,
 			notes: '',
@@ -482,22 +480,12 @@ export default {
 			}
 			return this.notes;
 		},
-		//toPrintOperand(keyboardNum) {
-		//	if (this.radioOperand === 'operand1') {
-		//		this.operand1 = keyboardNum;
-		//	} else {
-		//		this.operand2 = keyboardNum;
-		//	}
-		//},
 		toPrintOperand(keyboardNum) {
 			if (this.radioOperand === 'operand1') {
-				//this.operands=[];
-				this.operands.push(keyboardNum);
-				this.operand1 = this.operands.join("");
+				this.operand1 = keyboardNum;
+				console.log(this.operand1);
 			} else {
-				//this.operands=[];
-				this.operands.push(keyboardNum);
-				this.operand2 = this.operands.join("");
+				this.operand2 = keyboardNum;
 			}
 		},
 		delKeyNum() {
@@ -507,14 +495,13 @@ export default {
 				this.operand2 = this.placeholder2;
 			}
 		},
-		cleanNum() {
+		cleans() {
 			if (this.radioOperand === 'operand1') {
 				this.operand1--;
 			} else {
 				this.operand2--;
 			}
 		}
-
 	},
 	computed: {
 		fib1() {
