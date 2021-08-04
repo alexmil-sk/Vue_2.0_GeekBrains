@@ -197,7 +197,7 @@
 					:value="fib1 + ' ( +- операнд )'"
 				/>
 			</div>
-			<div class="input-group mb-3" v-else-if="result !== ''">
+			<div class="input-group mb-3" v-else-if="!result">
 				<span
 					class="input-group-text operand btn-primary" id="basic-addon4-1"
 					:class="{'inactive1': !result}"
