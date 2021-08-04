@@ -337,9 +337,8 @@ export default {
 				titles: ['Сложение', 'Вычитание', 'Деление', 'Умножение', 'Степень числа', 'Целочисленное деление', 'Корень квадратный', 'Дробь'],
 				classes: ['btn-warning', 'btn-info', 'btn-success', 'btn-primary', 'btn-secondary', 'btn-dark', 'btn-light', 'btn-primary'],
 			}, 
-			myCollection: ['1', '2', '3', '4', '5'],
 			logs: {},
-			keyboardNums: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],
+			keyboardNums: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
 			checkedKeyboard: false,
 			radioOperand: 'operand1',
 		};
