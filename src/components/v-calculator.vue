@@ -496,6 +496,8 @@ export default {
 				this.operands2.push(keyboardNum);
 				this.operand2 = parseInt(this.operands2.join(""));
 			}
+			//Рекомендация преподавателя
+			//this[this.radioOperand] = +(this[this.radioOperand] += String(keyboardNum)); 
 		},
 		delKeyNum() {
 			if (this.radioOperand === 'operand1') {
@@ -514,6 +516,8 @@ export default {
 				this.operands2 = this.operands2.slice(0, this.operands2.length-1);
 				this.operand2 = parseInt(this.operands2.join(""));
 			}
+			//Рекомендация преподавателя
+			//this[this.radioOperand] = + String(this[this.radioOperand]).slice(0,-1);
 		}
 
 	},
