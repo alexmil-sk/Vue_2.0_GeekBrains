@@ -490,11 +490,9 @@ export default {
 		},
 		toPrintOperand(keyboardNum) {
 			if (this.radioOperand === 'operand1') {
-				//this.operands=[];
 				this.operands1.push(keyboardNum);
 				this.operand1 = parseInt(this.operands1.join(""));
 			} else {
-				//this.operands=[];
 				this.operands2.push(keyboardNum);
 				this.operand2 = parseInt(this.operands2.join(""));
 			}
