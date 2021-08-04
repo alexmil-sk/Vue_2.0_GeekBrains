@@ -1,0 +1,19 @@
+<template>
+	<div class="header">
+		<h1>{{ title }}</h1>
+	</div>
+</template>
+<script>
+export default {
+	name: 'Header',
+	data() {
+		return {
+			title: 'Header Title'
+		}
+	},
+	
+}
+</script>
+<style lang="scss">
+	
+</style>
