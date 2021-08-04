@@ -1,12 +1,16 @@
 <template>
 	<div id="app">
 		<img alt="Vue logo" :src="srcLogo">
-		<v-header></v-header>
+		<div class="header">
+			<v-header></v-header>
+		</div>
 		<div class="wrapper">
 			<costs-table :costsList="paymentsList"></costs-table>
 		</div>
+			<h5>Total Amount: {{ totalAmount }} &#8381;</h5>
+			
 		<div>
-			<add-costs-form></add-costs-form>
+			<add-costs-form @addInfoStr="addData"></add-costs-form>
 		</div>
 	</div>
 </template>
@@ -31,25 +35,36 @@ export default {
 		'add-costs-form': AddCostsForm
 	},
 	methods: {
+		addData(infoStr) {
+			this.paymentsList.push(infoStr);
+		},
 		fetchData() {
 			return [
 				{
 					date: '28.03.2020',
 					category: 'Food',
-					value: 169
+					amount: 169
 				},
 				{
 					date: '24.03.2020',
 					category: 'Transport',
-					value: 360
+					amount: 360
 				},
 				{
 					date: '24.03.2020',
 					category: 'Cloths',
-					value: 532
+					amount: 532
 				},
 			]
-		}
+		},
+	},
+	computed: {
+		totalAmount() {
+			return this.paymentsList.reduce(
+				(acc, cur) => acc + cur.amount,
+				0
+			);
+		},
 	},
 	created() {
 		this.paymentsList = this.fetchData();

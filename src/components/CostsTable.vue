@@ -3,9 +3,7 @@
 		<h1 >{{ title }}</h1>
 		<div class="costs__list">
 			<div class="costs__item" v-for="(item, idx) in costsList" :key="idx">
-				<span>{{ idx + 1 }} | {{ item }}</span>
-				<span></span>
-				<span></span>
+				<span>{{ idx + 1 }}). {{ item.date }} / {{ item.category }} / {{ item.amount }} &#8381;</span>
 			</div>
 		</div>
 	</div>

@@ -24,13 +24,13 @@
 			/>
 		</div>
 		<div class="input-group input-group-sm mb-3">
-			<span class="input-group-text" id="inputGroup-sizing-sm">type</span>
+			<span class="input-group-text" id="inputGroup-sizing-sm">category</span>
 			<input
 				type="text"
 				class="form-control"
 				aria-label="Sizing example input"
 				aria-describedby="inputGroup-sizing-sm"
-				v-model="type"
+				v-model="category"
 				placeholder="Категория затрат"
 			/>
 		</div>
@@ -50,14 +50,14 @@ export default {
 			title: 'Costs Form',
 			date: '',
 			amount: '',
-			type: '',
+			category: '',
 		}
 	},
 	methods: {
 		onSave() {
 			const { amount, category} = this;
 			const infoStr = {
-				date: this.date ?? this.getCurrentDate,
+				date: this.date || this.getCurrentDate,
 				amount,
 				category, 
 			}
@@ -67,10 +67,10 @@ export default {
 	computed: {
 		getCurrentDate() {
 			const today = new Date();
-			const d = today.getDate();
-			const m = today.getMonth() + 1;
+			const d = '0' + today.getDate();
+			const m = '0' + (today.getMonth() + 1);
 			const y = today.getFullYear();
-			return `${d} - ${m} - ${y}`;
+			return `${d}.${m}.${y}`;
 		}
 	}
 }
