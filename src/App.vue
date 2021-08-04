@@ -6,7 +6,6 @@
 		/>
 		<v-calculator class="v-calculator" msg="Vue.JS 2.0"></v-calculator>
 		<counter-button v-if="show"></counter-button>
-		<counter-button v-show="show"></counter-button>
 		<button @click="show=!show">Скрыть / Отобразить</button>
 
 	</div>
