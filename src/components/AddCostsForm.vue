@@ -11,17 +11,10 @@
 				v-model="date"
 				placeholder="Дата произведенных затрат"
 			/>
-		</div>
-		<div class="input-group input-group-sm mb-3">
-			<span class="input-group-text" id="inputGroup-sizing-sm">amount</span>
-			<input
-				type="text"
-				class="form-control"
-				aria-label="Sizing example input"
-				aria-describedby="inputGroup-sizing-sm"
-				v-model="amount"
-				placeholder="Сумма затрат"
-			/>
+			<button
+				class="btn btn-danger btn-sm"
+				@click="clearFormDate"
+			>x</button>
 		</div>
 		<div class="input-group input-group-sm mb-3">
 			<span class="input-group-text" id="inputGroup-sizing-sm">category</span>
@@ -31,8 +24,27 @@
 				aria-label="Sizing example input"
 				aria-describedby="inputGroup-sizing-sm"
 				v-model="category"
-				placeholder="Категория затрат"
+				placeholder= "Категория затрат"
 			/>
+			<button
+				class="btn btn-danger btn-sm"
+				@click="clearFormCategory"
+			>x</button>
+		</div>
+		<div class="input-group input-group-sm mb-3">
+			<span class="input-group-text" id="inputGroup-sizing-sm">amount</span>
+			<input
+				type="text"
+				class="form-control"
+				aria-label="Sizing example input"
+				aria-describedby="inputGroup-sizing-sm"
+				v-model="amount"
+				placeholder="0"
+			/>
+			<button
+				class="btn btn-danger btn-sm"
+				@click="clearFormAmount"
+			>x</button>
 		</div>
 		<button
 			type="button"
@@ -40,6 +52,12 @@
 			@click="onSave"
 		>Save form
 		</button>
+		&nbsp;
+		<button
+			type="button"
+			class="btn btn-danger btn-sm"
+			@click="clearForm"
+			>Clear Form</button>
 	</div>
 </template>
 <script>
@@ -51,6 +69,7 @@ export default {
 			date: '',
 			amount: '',
 			category: '',
+			placeholderErr: 'Поле является обязательным',
 		}
 	},
 	methods: {
@@ -59,10 +78,24 @@ export default {
 			const infoStr = {
 				date: this.date || this.getCurrentDate,
 				amount,
-				category, 
+				category,
 			}
 			this.$emit('addInfoStr', infoStr);
-		}
+		},
+		clearForm() {
+			this.clearFormDate()
+			this.clearFormCategory();
+			this.clearFormAmount();
+		},
+		clearFormCategory() {
+			this.category = '';
+		},
+		clearFormAmount() {
+			this.amount = '';
+		},
+		clearFormDate() {
+			this.date = '';
+		},
 	},
 	computed: {
 		getCurrentDate() {
@@ -76,5 +109,5 @@ export default {
 }
 </script>
 <style lang="scss">
-	
+
 </style>

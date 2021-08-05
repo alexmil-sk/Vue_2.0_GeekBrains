@@ -1,22 +1,25 @@
 <template>
-	<div id="app">
-		<img alt="Vue logo" :src="srcLogo">
+	<div id="app" v-clock>
 		<div class="header">
 			<v-header></v-header>
 		</div>
 		<div class="wrapper">
+			<h1 class="t-left">My personal costs</h1>
+			<div class="t-left">
+				<button type="button" class="btn btn-success btn-sm" @click="showForm = !showForm">ADD NEW COST</button>
+			</div>
 			<costs-table :costsList="paymentsList"></costs-table>
 		</div>
-			<h5>Total Amount: {{ totalAmount }} &#8381;</h5>
-			
-		<div>
+		<h5  class="mbot-25">Total Costs Amount: {{ totalAmount }} &#8381;</h5>
+
+
+		<div v-if="showForm">
 			<add-costs-form @addInfoStr="addData"></add-costs-form>
 		</div>
 	</div>
 </template>
 
 <script>
-import logoVue from './assets/logo.png';
 import Header from './components/Header.vue';
 import CostsTable from './components/CostsTable.vue';
 import AddCostsForm from './components/AddCostsForm.vue'
@@ -25,8 +28,8 @@ export default {
 	name: 'App',
 	data() {
 		return {
-			srcLogo: logoVue,
 			paymentsList: [],
+			showForm: false,
 		}
 	},
 	components: {
@@ -36,7 +39,13 @@ export default {
 	},
 	methods: {
 		addData(infoStr) {
-			this.paymentsList.push(infoStr);
+			if (infoStr.amount == 0 || infoStr.category === '') {
+				alert('"Категория затрат" и "Сумма затрат" являются обязательными полями!');
+			} else if (isNaN(infoStr.amount)) {
+				alert('"Сумма затрат" должна быть числом!');
+			} else {
+				this.paymentsList.push(infoStr);
+			}
 		},
 		fetchData() {
 			return [
@@ -61,10 +70,11 @@ export default {
 	computed: {
 		totalAmount() {
 			return this.paymentsList.reduce(
-				(acc, cur) => acc + cur.amount,
+				(acc, cur) => acc + +(cur.amount),
 				0
 			);
 		},
+
 	},
 	created() {
 		this.paymentsList = this.fetchData();

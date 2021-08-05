@@ -33,6 +33,10 @@ $input-group-addon-bg: 		#888;
 
 //*__</ BOOTSTRAP VARIABLES >__________________________________________________
 
+[v-clock] {
+	display: none;
+}
+
 #app {
 	font-family: 'Roboto', sans-serif;
 	-webkit-font-smoothing: antialiased;
@@ -49,6 +53,7 @@ $input-group-addon-bg: 		#888;
 
 	h1 {
 		font-weight: bolder;
+		color: $Blue;
 	}
 	h2 {
 		color: green;
@@ -70,11 +75,19 @@ $input-group-addon-bg: 		#888;
 
 	li {
 		display: inline-block;
-		margin: 0 10px;
+		margin: 0 20px;
 	}
-
-	a {
-		color: #42b983;
+	.mbot-25 {
+		margin-bottom: 25px;
+	}
+	.text-red {
+		color: red;
+	}
+	.text-white {
+		color: white;
+	}
+	.t-left {
+		text-align: left;
 	}
 	.wrapper {
 		display: flex;
@@ -83,7 +96,7 @@ $input-group-addon-bg: 		#888;
 		border: $border;
 		border-radius: 10px 10px;
 		box-shadow: $boxShadow;
-		width: 80%;
+		width: 600px;
 		height: auto;
 		margin: $marginCenter;
 		margin-top: 40px;
@@ -97,7 +110,7 @@ $input-group-addon-bg: 		#888;
 		border: $border;
 		border-radius: 55px 55px;
 		box-shadow: $boxShadow;
-		width: 330px;
+		width: 600px;
 		height: auto;
 		margin: $marginCenter;
 		margin-top: 40px;
@@ -105,40 +118,46 @@ $input-group-addon-bg: 		#888;
 		padding: 25px;
 	}
 	.costs__table {
-		justify-content: center;
-		border: $border;
-		border-radius: 10px 10px;
-		box-shadow: $boxShadow;
-		width: 80%;
-		height: auto;
+		position: relative;
+	//	justify-content: center;
+	//	border: $border;
+	//	border-radius: 10px 10px;
+	//	box-shadow: $boxShadow;
+		width: 90%;
+	//	height: auto;
 		margin: $marginCenter;
-		margin-top: 40px;
-		margin-bottom: 40px;
-		padding: 25px;
-
-		&__list {
-
-			&__item {}
-		}
+	//	margin-top: 40px;
+	//	margin-bottom: 40px;
+	//	padding: 25px;
+//
+	//	&__list {
+//
+	//		&__item {}
+	//	}
 	}
 	.costs__form {
+		top: 0;
+		left: 50%;
 		justify-content: center;
 		border: $border;
 		border-radius: 10px 10px;
 		box-shadow: $boxShadow;
-		width: 80%;
+		width: 380px;
 		height: auto;
 		margin: $marginCenter;
 		margin-top: 40px;
 		margin-bottom: 40px;
 		padding: 25px;
+		opacity: 1;
+		//background-color: $input-group-addon-bg;
+
 		.input-group-text {
-			width: 70px;
+			width: 75px;
 			background-color:$input-group-addon-bg ;
 			color: $input-group-addon-color;
 		}
 	}
-	
-	
+
+
 }
 
