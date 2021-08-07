@@ -8,14 +8,18 @@
 			<div class="t-left">
 				<button type="button" class="btn btn-success btn-sm" @click="showForm = !showForm">ADD NEW COST</button>
 			</div>
-			<costs-table :costsList="paymentsList"></costs-table>
+			<costs-table
+            :costsList="currentElems"
+            :costsListDel="paymentsList"
+         ></costs-table>
 		</div>
-      <!--
-		<h5  class="mbot-25">Total Costs Amount: {{ totalAmount }} &#8381;</h5>
-      -->
+      <v-pagination
+         :currentPage="currentPage"
+         :nStr="nStr"
+         :quantElems="paymentsList.length"
+         @getPage="onChangePage"
+      ></v-pagination>
       <h5 class="mbot-25">Total Costs Amount:&nbsp;<span class="badge bg-secondary">{{ getFPV }} &#8381;</span></h5>
-
-
 		<div v-if="showForm">
 			<add-costs-form @addInfoStr="addDataStore"></add-costs-form>
 		</div>
@@ -26,7 +30,8 @@
 import { mapMutations, mapGetters, mapActions } from 'vuex';//,__Преобразовывает мутации в методы и подмешиват их в инстантс того приложения, где мы его вызываем
 import Header from './components/Header.vue';
 import CostsTable from './components/CostsTable.vue';
-import AddCostsForm from './components/AddCostsForm.vue'
+import AddCostsForm from './components/AddCostsForm.vue';
+import Pagination from './components/Pagination.vue';
 
 
 export default {
@@ -35,12 +40,15 @@ export default {
 		return {
 			//paymentsList: [],//,__Удаляем, т.к. paymentslist уже имеется в mapGetters в computed
 			showForm: false,
+         currentPage: 1,
+         nStr: 4,
 		}
 	},
 	components: {
 		'costs-table': CostsTable,
 		'v-header': Header,
-		'add-costs-form': AddCostsForm
+		'add-costs-form': AddCostsForm,
+      'v-pagination': Pagination,
 	},
 	methods: {
       //...mapMutations([//,__Вариант_1__Написания мутации
@@ -50,6 +58,9 @@ export default {
          loadData: 'setPaymentListData', //,__Вариант_2__Написания мутации
          addDataStore: 'addDataToPaymentList',
       }),
+      onChangePage(page) {
+         this.currentPage = page;
+      },
 		//addData(infoStr) {
 		//	if (infoStr.amount == 0 || infoStr.category === '') //{
 		//		alert('"Категория затрат" и "Сумма затрат" //являются обязательными полями!');
@@ -94,7 +105,11 @@ export default {
 		},
       getFPV() {
          return this.$store.getters.getFullPaymentAmount;
-      }
+      },
+      currentElems() {
+         const {nStr, currentPage} = this;
+         return this.paymentsList.slice(nStr * (currentPage - 1), nStr * (currentPage - 1) + nStr);
+         },
 
 	},
 	created() {

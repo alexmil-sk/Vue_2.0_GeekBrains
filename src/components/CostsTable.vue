@@ -11,7 +11,7 @@
 				</thead>
 				<tbody v-if="costsList.length">
 					<tr v-for="(item, idx) in costsList" :key="idx">
-						<th scope="row">{{ idx + 1}}</th>
+						<th scope="row">{{ idx+ 1 }}</th>
 						<td>{{ item.date }}</td>
 						<td>{{ toUpperCase (item.category) }}</td>
 						<td>{{ item.amount }}</td>
@@ -30,12 +30,9 @@
 				</tr>
 			</tbody>
 		</table>
-		<v-pagination></v-pagination>
 	</div>
 </template>
 <script>
-import Pagination from './Pagination';
-
 export default {
 	name: 'CostsTable',
 	props: {
@@ -43,20 +40,22 @@ export default {
 			type: Array,
 			default: () => [],
 			require: true
+		},
+      costsListDel: {
+			type: Array,
+			default: () => [],
+			require: true
 		}
 	},
 	data() {
 		return {
-         current: 1,
-         n: 5,
+
 		}
 	},
-	components: {
-		'v-pagination': Pagination,
-	},
+	components: {},
 	methods: {
 		removeBtn(idx) {
-			this.costsList.splice(idx, 1);
+			this.costsListDel.splice(idx, 1);
 		},
 		toUpperCase(item) {
 			return item.toUpperCase();
@@ -65,8 +64,3 @@ export default {
 	computed: {},
 };
 </script>
-<style lang="scss">
-
-
-
-</style>

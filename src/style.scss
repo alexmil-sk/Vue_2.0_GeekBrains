@@ -80,6 +80,9 @@ $input-group-addon-bg: 		#888;
 	.mbot-25 {
 		margin-bottom: 25px;
 	}
+   .mtop-20 {
+      margin-top: 20px;
+   }
 	.text-red {
 		color: red;
 	}
@@ -135,6 +138,10 @@ $input-group-addon-bg: 		#888;
 	//		&__item {}
 	//	}
 	}
+   .pagination-wrapper {
+      display: flex;
+      justify-content: center;
+   }
 	.costs__form {
 		top: 0;
 		left: 50%;

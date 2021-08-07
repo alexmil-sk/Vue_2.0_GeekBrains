@@ -83,8 +83,9 @@ export default {
          'fetchCategoryList'
       ]),
 		onSave() {
-			const { amount, category} = this;
+			const { id, amount, category} = this;
 			const infoStr = {
+            id,
 				date: this.date || this.getCurrentDate,
 				amount,
 				category,
