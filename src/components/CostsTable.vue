@@ -30,7 +30,7 @@
 				</tr>
 			</tbody>
 		</table>
-		<v-pagination v-if="costsList.length !== 0"></v-pagination>
+		<v-pagination></v-pagination>
 	</div>
 </template>
 <script>
@@ -47,6 +47,8 @@ export default {
 	},
 	data() {
 		return {
+         current: 1,
+         n: 5,
 		}
 	},
 	components: {

@@ -13,7 +13,7 @@
       <!--
 		<h5  class="mbot-25">Total Costs Amount: {{ totalAmount }} &#8381;</h5>
       -->
-      <h5  class="mbot-25">Total Costs Amount: {{ getFPV }} &#8381;</h5>
+      <h5 class="mbot-25">Total Costs Amount:&nbsp;<span class="badge bg-secondary">{{ getFPV }} &#8381;</span></h5>
 
 
 		<div v-if="showForm">

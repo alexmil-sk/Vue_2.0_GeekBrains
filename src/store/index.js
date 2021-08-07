@@ -28,16 +28,17 @@ export default new Vuex.Store({
    getters: {
       getPaymentsList: state => state.paymentsList,
       getFullPaymentAmount: state => {
-         return state.paymentsList.reduce((res, cur) => res += cur.amount, 0);
+         return state.paymentsList.reduce((res, cur) => res += +(cur.amount), 0);
       },
       getCategories: state => state.categories,
    },
    actions: {
-      fetchData({commit}) {
+      fetchData({ commit }) {
+         if(this.state.paymentsList.length) return
          return new Promise((resolve) => {
             setTimeout(() => {
                const items = [];
-               for (let i = 0; i < 5; i++) {
+               for (let i = 0; i < 2; i++) {
                   items.push({
                      date: "05.08.2021",
                      category: "Sport",
@@ -45,7 +46,7 @@ export default new Vuex.Store({
                   })
                }
                resolve(items);
-            },2000)
+            },1000)
          })
          .then(res => commit('setPaymentListData', res))
       },
@@ -55,7 +56,7 @@ export default new Vuex.Store({
                   const categories = ['Sport', 'Food', 'Education', 'Internet', 'Community'];
 
                   resolve(categories);
-               }, 2000)
+               }, 1000)
          })
          .then(res => commit('setCategoriesListData', res))
       }
