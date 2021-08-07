@@ -100,7 +100,7 @@ $input-group-addon-bg: 		#888;
 		height: auto;
 		margin: $marginCenter;
 		margin-top: 40px;
-		margin-bottom: 40px;
+		margin-bottom: 25px;
 		padding: 25px;
 	}
 	.header {
@@ -135,6 +135,9 @@ $input-group-addon-bg: 		#888;
 	//		&__item {}
 	//	}
 	}
+   .pagination-wrapper {
+      margin-bottom: 30px;
+   }
 	.costs__form {
 		top: 0;
 		left: 50%;

@@ -1,5 +1,5 @@
 <template>
-	<div id="app" v-clock>
+	<div id="app">
 		<div class="header">
 			<v-header></v-header>
 		</div>
@@ -8,10 +8,19 @@
 			<div class="t-left">
 				<button type="button" class="btn btn-success btn-sm" @click="showForm = !showForm">ADD NEW COST</button>
 			</div>
-			<costs-table :costsList="paymentsList"></costs-table>
+			<costs-table
+            :costsList="currentElems"
+            :costsListDel="paymentsList"
+         ></costs-table>
 		</div>
-		<h5  class="mbot-25">Total Costs Amount: {{ totalAmount }} &#8381;</h5>
+      <v-pagination
+         :currentPage="currentPage"
+         :nStr="nStr"
+         :length="paymentsList.length"
+         @paginate="onChangePage"
+      ></v-pagination>
 
+		<h5  class="mbot-25">Total Costs Amount: {{ totalAmount }} &#8381;</h5>
 
 		<div v-if="showForm">
 			<add-costs-form @addInfoStr="addData"></add-costs-form>
@@ -22,7 +31,9 @@
 <script>
 import Header from './components/Header.vue';
 import CostsTable from './components/CostsTable.vue';
-import AddCostsForm from './components/AddCostsForm.vue'
+import AddCostsForm from './components/AddCostsForm.vue';
+import Pagination from './components/Pagination.vue';
+
 
 export default {
 	name: 'App',
@@ -30,12 +41,15 @@ export default {
 		return {
 			paymentsList: [],
 			showForm: false,
+         currentPage: 1,
+         nStr: 6,
 		}
 	},
 	components: {
 		'costs-table': CostsTable,
 		'v-header': Header,
-		'add-costs-form': AddCostsForm
+		'add-costs-form': AddCostsForm,
+      'v-pagination': Pagination,
 	},
 	methods: {
 		addData(infoStr) {
@@ -66,6 +80,9 @@ export default {
 				},
 			]
 		},
+      onChangePage(p) {
+         this.currentPage = p;
+      }
 	},
 	computed: {
 		totalAmount() {
@@ -74,7 +91,11 @@ export default {
 				0
 			);
 		},
-
+      currentElems() {
+         const {nStr, currentPage} = this;
+         //return this.paymentsList.splice(nStr * (currentPage - 1), nStr * (currentPage - 1) + nStr);
+         return this.paymentsList.slice(nStr * (currentPage-1), nStr * (currentPage-1) + nStr);
+      }
 	},
 	created() {
 		this.paymentsList = this.fetchData();

@@ -30,16 +30,19 @@
 				</tr>
 			</tbody>
 		</table>
-		<v-pagination v-if="costsList.length !== 0"></v-pagination>
 	</div>
 </template>
 <script>
-import Pagination from './Pagination';
 
 export default {
 	name: 'CostsTable',
 	props: {
 		costsList: {
+			type: Array,
+			default: () => [],
+			require: true
+		},
+      costsListDel: {
 			type: Array,
 			default: () => [],
 			require: true
@@ -50,11 +53,10 @@ export default {
 		}
 	},
 	components: {
-		'v-pagination': Pagination,
 	},
 	methods: {
 		removeBtn(idx) {
-			this.costsList.splice(idx, 1);
+			this.costsListDel.splice(idx, 1);
 		},
 		toUpperCase(item) {
 			return item.toUpperCase();

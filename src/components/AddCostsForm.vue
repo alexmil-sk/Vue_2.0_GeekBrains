@@ -34,11 +34,11 @@
 		<div class="input-group input-group-sm mb-3">
 			<span class="input-group-text" id="inputGroup-sizing-sm">amount</span>
 			<input
-				type="text"
+				type="number"
 				class="form-control"
 				aria-label="Sizing example input"
 				aria-describedby="inputGroup-sizing-sm"
-				v-model="amount"
+				v-model.number="amount"
 				placeholder="0"
 			/>
 			<button
