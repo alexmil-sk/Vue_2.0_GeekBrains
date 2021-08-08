@@ -32,10 +32,37 @@
             </option>
          </select>
          <button
+				class="btn btn-warning btn-sm"
+				@click="delCategories"
+			>DelAll
+         </button>
+         <button
 				class="btn btn-danger btn-sm"
 				@click="clearFormCategory"
-			>x</button>
+			>x
+         </button>
       </div>
+      <!-- //, Вставка новой категории -->
+      <div class="input-group input-group-sm mb-3">
+			<button
+				class="btn btn-success btn-sm"
+				@click="addNewCategory(addCat)"
+			>addCat +
+         </button>
+			<input
+				type="text"
+				class="form-control"
+				aria-label="Sizing example input"
+				aria-describedby="inputGroup-sizing-sm"
+				v-model="addCat"
+				placeholder="Добавить категорию"
+			/>
+			<button
+				class="btn btn-danger btn-sm"
+				@click="clearFormAddCategory"
+			>x</button>
+		</div>
+      <!-- //, Вставка новой категории -->
       <div class="input-group input-group-sm mb-3">
 			<span class="input-group-text" id="inputGroup-sizing-sm">amount</span>
 			<input
@@ -66,7 +93,7 @@
 	</div>
 </template>
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapMutations } from 'vuex';
 
 export default {
 	name: 'AddCostsForm',
@@ -75,6 +102,7 @@ export default {
 			title: 'Costs Form',
 			date: '',
 			amount: '',
+         addCat: '',
 			category: null,
 		}
 	},
@@ -96,10 +124,20 @@ export default {
 			this.clearFormDate()
 			this.clearFormCategory();
 			this.clearFormAmount();
+         this.clearFormAddCategory();
 		},
 		clearFormCategory() {
 			this.category = null;
 		},
+
+      //,_Вставка новой категории------------------
+      ...mapMutations(['addNewCategory']),
+      ...mapMutations(['delCategories']),
+      clearFormAddCategory() {
+			this.addCat = '';
+		},
+      //,_Вставка новой категории------------------
+
 		clearFormAmount() {
 			this.amount = '';
 		},

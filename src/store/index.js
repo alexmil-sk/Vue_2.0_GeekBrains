@@ -23,7 +23,17 @@ export default new Vuex.Store({
       },
       setCategoriesListData(state, payload) {
          state.categories = payload;
-      }
+      },
+      //,_Вставка новой категории------------------
+      addNewCategory(state, payload) {
+         state.categories.unshift(payload);
+      },
+      delCategories(state) {
+         state.categories.splice(0, state.categories.length);
+         console.log(state.categories);
+      },
+      //,-----------------------------------------
+
    },
    getters: {
       getPaymentsList: state => state.paymentsList,
