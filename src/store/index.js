@@ -60,6 +60,6 @@ export default new Vuex.Store({
                }, 1000)
          })
          .then(res => commit('setCategoriesListData', res))
-      }
+		},
    },
 });
