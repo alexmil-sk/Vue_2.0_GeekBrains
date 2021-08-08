@@ -14,6 +14,7 @@
 			<button
 				class="btn btn-danger btn-sm"
 				@click="clearFormDate"
+				:disabled="this.date=== ''"
 			>x</button>
 		</div>
       <div class="input-group input-group-sm mb-3">
@@ -34,11 +35,14 @@
          <button
 				class="btn btn-warning btn-sm"
 				@click="delCategories"
+            :disabled="!this.category"
 			>DelAll
          </button>
          <button
 				class="btn btn-danger btn-sm"
 				@click="clearFormCategory"
+            :disabled="!this.category"
+
 			>x
          </button>
       </div>
@@ -60,6 +64,7 @@
 			<button
 				class="btn btn-danger btn-sm"
 				@click="clearFormAddCategory"
+            :disabled="!this.addCat"
 			>x</button>
 		</div>
       <!-- //, Вставка новой категории -->
@@ -76,12 +81,14 @@
 			<button
 				class="btn btn-danger btn-sm"
 				@click="clearFormAmount"
+				:disabled="this.amount== 0"
 			>x</button>
 		</div>
 		<button
 			type="button"
 			class="btn btn-primary btn-sm"
 			@click="onSave"
+         :disabled="this.date == '' && this.category == null && this.amount == '' && this.addCat == ''"
 		>Save form
 		</button>
 		&nbsp;
@@ -89,6 +96,7 @@
 			type="button"
 			class="btn btn-danger btn-sm"
 			@click="clearForm"
+         :disabled="this.date == '' && this.category == null && this.amount == '' && this.addCat == ''"
 			>Clear Form</button>
 	</div>
 </template>
@@ -121,7 +129,7 @@ export default {
 			this.$emit('addInfoStr', infoStr);
 		},
 		clearForm() {
-			this.clearFormDate()
+			this.clearFormDate();
 			this.clearFormCategory();
 			this.clearFormAmount();
          this.clearFormAddCategory();
