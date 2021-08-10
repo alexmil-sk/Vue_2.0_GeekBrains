@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<h1>{{ title }}</h1>
+		<h1 class="text-white">{{ title }}</h1>
 	</div>
 </template>
 <script>
@@ -11,9 +11,9 @@ export default {
 			title: 'Header Title'
 		}
 	},
-	
+
 }
 </script>
 <style lang="scss">
-	
+
 </style>

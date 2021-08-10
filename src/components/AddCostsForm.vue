@@ -1,5 +1,5 @@
 <template>
-	<div class="costs__form">
+	<div class="costs__form bg-white">
 		<h1>{{ title }}</h1>
 		<div class="input-group input-group-sm mb-3">
 			<span class="input-group-text" id="inputGroup-sizing-sm">date</span>
@@ -14,6 +14,7 @@
 			<button
 				class="btn btn-danger btn-sm"
 				@click="clearFormDate"
+				:disabled="this.date=== ''"
 			>x</button>
 		</div>
       <div class="input-group input-group-sm mb-3">
@@ -22,7 +23,6 @@
             class="form-select form-select-sm"
             aria-label=".form-select-sm example"
             v-model="category" v-if="options"
-
          >
             <option :value="null" disabled>Выберите категорию</option>
             <option
@@ -33,48 +33,62 @@
             </option>
          </select>
          <button
+				class="btn btn-warning btn-sm"
+				@click="delCategories"
+            :disabled="!this.category"
+			>DelAll
+         </button>
+         <button
 				class="btn btn-danger btn-sm"
 				@click="clearFormCategory"
-			>x</button>
-      </div>
+            :disabled="!this.category"
 
-      <!--
-		<div class="input-group input-group-sm mb-3">
-			<span class="input-group-text" id="inputGroup-sizing-sm">category</span>
+			>x
+         </button>
+      </div>
+      <!-- //, Вставка новой категории -->
+      <div class="input-group input-group-sm mb-3">
+			<button
+				class="btn btn-success btn-sm"
+				@click="addNewCategory(addCat)"
+			>addCat +
+         </button>
 			<input
 				type="text"
 				class="form-control"
 				aria-label="Sizing example input"
 				aria-describedby="inputGroup-sizing-sm"
-				v-model="category"
-				placeholder= "Категория затрат"
+				v-model="addCat"
+				placeholder="Добавить категорию"
 			/>
 			<button
 				class="btn btn-danger btn-sm"
-				@click="clearFormCategory"
+				@click="clearFormAddCategory"
+            :disabled="!this.addCat"
 			>x</button>
 		</div>
-      -->
-
+      <!-- //, Вставка новой категории -->
       <div class="input-group input-group-sm mb-3">
 			<span class="input-group-text" id="inputGroup-sizing-sm">amount</span>
 			<input
-				type="text"
+				type="number"
 				class="form-control"
 				aria-label="Sizing example input"
 				aria-describedby="inputGroup-sizing-sm"
-				v-model="amount"
+				v-model.number="amount"
 				placeholder="0"
 			/>
 			<button
 				class="btn btn-danger btn-sm"
 				@click="clearFormAmount"
+				:disabled="this.amount== 0"
 			>x</button>
 		</div>
 		<button
 			type="button"
 			class="btn btn-primary btn-sm"
 			@click="onSave"
+         :disabled="this.date == '' && this.category == null && this.amount == '' && this.addCat == ''"
 		>Save form
 		</button>
 		&nbsp;
@@ -82,11 +96,12 @@
 			type="button"
 			class="btn btn-danger btn-sm"
 			@click="clearForm"
+         :disabled="this.date == '' && this.category == null && this.amount == '' && this.addCat == ''"
 			>Clear Form</button>
 	</div>
 </template>
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapMutations } from 'vuex';
 
 export default {
 	name: 'AddCostsForm',
@@ -95,6 +110,7 @@ export default {
 			title: 'Costs Form',
 			date: '',
 			amount: '',
+         addCat: '',
 			category: null,
 		}
 	},
@@ -103,8 +119,9 @@ export default {
          'fetchCategoryList'
       ]),
 		onSave() {
-			const { amount, category} = this;
+			const { id, amount, category} = this;
 			const infoStr = {
+            id,
 				date: this.date || this.getCurrentDate,
 				amount,
 				category,
@@ -112,13 +129,23 @@ export default {
 			this.$emit('addInfoStr', infoStr);
 		},
 		clearForm() {
-			this.clearFormDate()
+			this.clearFormDate();
 			this.clearFormCategory();
 			this.clearFormAmount();
+         this.clearFormAddCategory();
 		},
 		clearFormCategory() {
 			this.category = null;
 		},
+
+      //,_Вставка новой категории------------------
+      ...mapMutations(['addNewCategory']),
+      ...mapMutations(['delCategories']),
+      clearFormAddCategory() {
+			this.addCat = '';
+		},
+      //,_Вставка новой категории------------------
+
 		clearFormAmount() {
 			this.amount = '';
 		},
@@ -143,6 +170,3 @@ export default {
    }
 }
 </script>
-<style lang="scss">
-
-</style>

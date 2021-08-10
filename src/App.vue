@@ -3,22 +3,31 @@
 		<div class="header">
 			<v-header></v-header>
 		</div>
-		<div class="wrapper">
+		<div class="wrapper bg-white">
 			<h1 class="t-left">My personal costs</h1>
-			<div class="t-left">
-				<button type="button" class="btn btn-success btn-sm" @click="showForm = !showForm">ADD NEW COST</button>
-			</div>
-			<costs-table :costsList="paymentsList"></costs-table>
+         <div class="inline">
+            <div class="t-left">
+               <button type="button" class="btn btn-success btn-sm" @click="showDB = !showDB">ADD WITH HTTP DB</button>
+            </div>
+            <div class="t-left">
+               <button type="button" class="btn btn-success btn-sm" @click="showForm = !showForm">ADD WITH COSTS FORM</button>
+            </div>
+         </div>
+			<costs-table
+            :costsList="currentElems"
+            :costsListDel="paymentsList"
+         ></costs-table>
 		</div>
-      <!--
-		<h5  class="mbot-25">Total Costs Amount: {{ totalAmount }} &#8381;</h5>
-      -->
+      <v-pagination
+         :currentPage="currentPage"
+         :nStr="nStr"
+         :quantElems="paymentsList.length"
+         @getPage="onChangePage"
+      ></v-pagination>
       <h5 class="mbot-25">Total Costs Amount:&nbsp;<span class="badge bg-secondary">{{ getFPV }} &#8381;</span></h5>
+      <app-db v-if="showDB"></app-db>
+		<add-costs-form @addInfoStr="addDataStore" v-if="showForm"></add-costs-form>
 
-
-		<div v-if="showForm">
-			<add-costs-form @addInfoStr="addDataStore"></add-costs-form>
-		</div>
 	</div>
 </template>
 
@@ -26,7 +35,9 @@
 import { mapMutations, mapGetters, mapActions } from 'vuex';//,__Преобразовывает мутации в методы и подмешиват их в инстантс того приложения, где мы его вызываем
 import Header from './components/Header.vue';
 import CostsTable from './components/CostsTable.vue';
-import AddCostsForm from './components/AddCostsForm.vue'
+import AddCostsForm from './components/AddCostsForm.vue';
+import Pagination from './components/Pagination.vue';
+import AppDb from './components/db/AppDb.vue'
 
 
 export default {
@@ -35,12 +46,17 @@ export default {
 		return {
 			//paymentsList: [],//,__Удаляем, т.к. paymentslist уже имеется в mapGetters в computed
 			showForm: false,
+         showDB: false,
+         currentPage: 1,
+         nStr: 4,
 		}
 	},
 	components: {
 		'costs-table': CostsTable,
 		'v-header': Header,
-		'add-costs-form': AddCostsForm
+		'add-costs-form': AddCostsForm,
+      'v-pagination': Pagination,
+      'app-db': AppDb,
 	},
 	methods: {
       //...mapMutations([//,__Вариант_1__Написания мутации
@@ -50,34 +66,9 @@ export default {
          loadData: 'setPaymentListData', //,__Вариант_2__Написания мутации
          addDataStore: 'addDataToPaymentList',
       }),
-		//addData(infoStr) {
-		//	if (infoStr.amount == 0 || infoStr.category === '') //{
-		//		alert('"Категория затрат" и "Сумма затрат" //являются обязательными полями!');
-		//	} else if (isNaN(infoStr.amount)) {
-		//		alert('"Сумма затрат" должна быть числом!');
-		//	} else {
-		//		this.paymentsList.push(infoStr);
-		//	}
-		//},
-		fetchData() {
-			return [
-				{
-					date: '28.03.2020',
-					category: 'Food',
-					amount: 169
-				},
-				{
-					date: '24.03.2020',
-					category: 'Transport',
-					amount: 360
-				},
-				{
-					date: '24.03.2020',
-					category: 'Cloths',
-					amount: 532
-				},
-			]
-		},
+      onChangePage(page) {
+         this.currentPage = page;
+      },
 	},
 	computed: {
       ...mapGetters({
@@ -94,7 +85,11 @@ export default {
 		},
       getFPV() {
          return this.$store.getters.getFullPaymentAmount;
-      }
+      },
+      currentElems() {
+         const {nStr, currentPage} = this;
+         return this.paymentsList.slice(nStr * (currentPage - 1), nStr * (currentPage - 1) + nStr);
+         },
 
 	},
 	created() {
