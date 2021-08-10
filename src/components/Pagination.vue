@@ -3,13 +3,13 @@
          <div class="btn-group me-2 mbot-25" role="group" aria-label="First group">
             <button
                type="button"
-               class="btn btn-outline-secondary me-2"
+               class="btn btn-outline-light me-2"
                @click="onClick(currentPage--)"
             >Previous
             </button>
             <button
                type="button"
-               class="pages btn btn-outline-secondary me-2"
+               class="pages btn btn-outline-light me-2"
                v-for="page in amountPages"
                :key="page"
                @click="onClick(page)"
@@ -17,7 +17,7 @@
             </button>
             <button
                type="button"
-               class="btn btn-outline-secondary"
+               class="btn btn-outline-light"
                @click="onClick(currentPage++)"
             >Next
             </button>

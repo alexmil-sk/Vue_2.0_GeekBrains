@@ -3,11 +3,16 @@
 		<div class="header">
 			<v-header></v-header>
 		</div>
-		<div class="wrapper">
+		<div class="wrapper bg-white">
 			<h1 class="t-left">My personal costs</h1>
-			<div class="t-left">
-				<button type="button" class="btn btn-success btn-sm" @click="showForm = !showForm">ADD NEW COST</button>
-			</div>
+         <div class="inline">
+            <div class="t-left">
+               <button type="button" class="btn btn-success btn-sm" @click="showDB = !showDB">ADD WITH HTTP DB</button>
+            </div>
+            <div class="t-left">
+               <button type="button" class="btn btn-success btn-sm" @click="showForm = !showForm">ADD WITH COSTS FORM</button>
+            </div>
+         </div>
 			<costs-table
             :costsList="currentElems"
             :costsListDel="paymentsList"
@@ -20,9 +25,9 @@
          @getPage="onChangePage"
       ></v-pagination>
       <h5 class="mbot-25">Total Costs Amount:&nbsp;<span class="badge bg-secondary">{{ getFPV }} &#8381;</span></h5>
-		<div v-if="showForm">
-			<add-costs-form @addInfoStr="addDataStore"></add-costs-form>
-		</div>
+      <app-db v-if="showDB"></app-db>
+		<add-costs-form @addInfoStr="addDataStore" v-if="showForm"></add-costs-form>
+
 	</div>
 </template>
 
@@ -32,6 +37,7 @@ import Header from './components/Header.vue';
 import CostsTable from './components/CostsTable.vue';
 import AddCostsForm from './components/AddCostsForm.vue';
 import Pagination from './components/Pagination.vue';
+import AppDb from './components/db/AppDb.vue'
 
 
 export default {
@@ -40,6 +46,7 @@ export default {
 		return {
 			//paymentsList: [],//,__Удаляем, т.к. paymentslist уже имеется в mapGetters в computed
 			showForm: false,
+         showDB: false,
          currentPage: 1,
          nStr: 4,
 		}
@@ -49,6 +56,7 @@ export default {
 		'v-header': Header,
 		'add-costs-form': AddCostsForm,
       'v-pagination': Pagination,
+      'app-db': AppDb,
 	},
 	methods: {
       //...mapMutations([//,__Вариант_1__Написания мутации
@@ -70,25 +78,25 @@ export default {
 		//		this.paymentsList.push(infoStr);
 		//	}
 		//},
-		fetchData() {
-			return [
-				{
-					date: '28.03.2020',
-					category: 'Food',
-					amount: 169
-				},
-				{
-					date: '24.03.2020',
-					category: 'Transport',
-					amount: 360
-				},
-				{
-					date: '24.03.2020',
-					category: 'Cloths',
-					amount: 532
-				},
-			]
-		},
+		//fetchData() {
+		//	return [
+		//		{
+		//			date: '28.03.2020',
+		//			category: 'Food',
+		//			amount: 169
+		//		},
+		//		{
+		//			date: '24.03.2020',
+		//			category: 'Transport',
+		//			amount: 360
+		//		},
+		//		{
+		//			date: '24.03.2020',
+		//			category: 'Cloths',
+		//			amount: 532
+		//		},
+		//	]
+		//},
 	},
 	computed: {
       ...mapGetters({

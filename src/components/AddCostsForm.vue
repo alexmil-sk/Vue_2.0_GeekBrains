@@ -1,5 +1,5 @@
 <template>
-	<div class="costs__form">
+	<div class="costs__form bg-white">
 		<h1>{{ title }}</h1>
 		<div class="input-group input-group-sm mb-3">
 			<span class="input-group-text" id="inputGroup-sizing-sm">date</span>
@@ -170,6 +170,3 @@ export default {
    }
 }
 </script>
-<style lang="scss">
-
-</style>

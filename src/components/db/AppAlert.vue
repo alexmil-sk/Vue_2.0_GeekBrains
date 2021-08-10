@@ -3,7 +3,7 @@
 		<h3>{{ alert.title }}</h3>
 		<p>{{ alert.text }}</p>
 		<button
-			class="btn"
+			class="btn btn-danger"
 			:class="alert.type"
 			@click="$emit('closeEr')"
 		>Закрыть
@@ -17,5 +17,5 @@ export default {
 }
 </script>
 <style>
-	
+
 </style>
