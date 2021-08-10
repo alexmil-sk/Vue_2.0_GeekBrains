@@ -1,17 +1,312 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
 @import url('https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css');
 
 $Vuecolor: #2c3e50;
 $Blue: blue;
 $Green: green;
 
-$border: 1px solid #ccc;
+$border: 1px solid #666;
 $boxShadow: 0 0 10px 10px #ccc;
 $marginCenter: 0 auto;
 
+//*__< BOOTSTRAP VARIABLES >____________________________
 
+//,__< INPUT >__________________
+//__$input-group-addon-padding-y:		;
+//__$input-group-addon-padding-x:		;
+//__$input-group-addon-font-weight:		;
+$input-group-addon-color:	white;
+$input-group-addon-bg: 		#888;
+//__$input-group-addon-border-color:	;
+
+//__$input-padding-y: 		;
+//__$input-padding-x: 		;
+//__$input-font-weight: 	;
+//__$input-color:				;
+//__$gray-200: 				;
+//__$input-border-color:	;
+
+//,__</ INPUT >__________________
+
+
+//*__</ BOOTSTRAP VARIABLES >__________________________________________________
+
+
+//*__< DB>_
+* {
+   box-sizing: border-box;
+}
+
+body {
+   font-family: Inter, Roboto, Oxygen, Fira Sans, Helvetica Neue, sans-serif;
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+   font-size: 16px;
+   color: #2c3e50;
+   background: #2c3e50;
+}
+
+hr {
+   margin: 1rem 0;
+}
+
+strong,
+.bold {
+   font-weight: 500;
+}
+
+ol,
+p,
+ul {
+   line-height: 1.7;
+}
+
+a {
+   color: #3eaf7c;
+   font-weight: 500;
+   text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+   font-weight: 500;
+   line-height: 1.45;
+}
+
+h1 {
+   font-size: 2.2rem;
+   font-weight: 600;
+}
+
+h2 {
+   font-size: 1.65rem;
+   padding-bottom: 0.3rem;
+   border-bottom: 1px solid #eaecef;
+}
+
+h3 {
+   font-size: 1.35rem;
+}
+
+/*.primary {*/
+/*    color: #42b983;*/
+/*}*/
+
+/*.danger {*/
+/*    color: #e53935;*/
+/*}*/
+
+.container {
+   margin: 0 auto;
+   max-width: 1000px;
+}
+
+.pt-2 {
+   padding-top: 2rem;
+}
+
+.pt-1 {
+   padding-top: 1rem;
+}
+
+.pt-5 {
+   padding-top: 5rem;
+}
+.card1 {
+   padding: 1rem;
+   margin-bottom: 1rem;
+   border-radius: 10px;
+   box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.2);
+   background: #fff;
+}
+
+.just-spB {
+   justify-content: space-between;
+}
+.alineItm-center {
+   align-items: center;
+}
+.card {
+   padding: 1rem;
+   margin-bottom: 1rem;
+   border-radius: 10px;
+   box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.2);
+   background: #fff;
+}
+
+.card.marked {
+   border: 4px solid #42b983;
+}
+
+.card.center {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+.inline {
+   display: flex;
+   justify-content: space-between;
+}
+.flex {
+   display: flex;
+}
+.list {
+   margin: 0;
+   padding: 0;
+   list-style: none;
+}
+
+.list-item {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   padding: 0.5rem 0;
+}
+
+.alert {
+   padding: 1rem 1.5rem;
+   border-left-width: .5rem;
+   border-left-style: solid;
+   margin: 1rem 0;
+   position: relative;
+   border-bottom-right-radius: 2px;
+   border-top-right-radius: 2px;
+}
+
+.alert.primary {
+   border-color: #42b983;
+   background-color: #f8f8f8;
+}
+
+.alert.danger {
+   border-color: #e53935;
+   background-color: #f8f8f8;
+}
+
+.alert.warning {
+   border-color: #c25205;
+   background-color: #f8f8f8;
+}
+
+.alert p {
+   color: #222;
+   line-height: 1.7;
+}
+
+.alert-title {
+   text-transform: uppercase;
+   font-weight: 600;
+   margin-bottom: -.4rem;
+   color: #222;
+}
+
+.modal {
+   position: fixed;
+   top: 60px;
+   width: 600px;
+   padding: 1rem;
+   background: #fff;
+   z-index: 1000;
+   left: 50%;
+   border-radius: 10px;
+   transform: translateX(-50%);
+   box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.modal-backdrop {
+   position: fixed;
+   top: 0;
+   right: 0;
+   left: 0;
+   bottom: 0;
+   background: rgba(0, 0, 0, .35);
+}
+
+
+.loader {
+   font-size: 10px;
+   margin: 50px auto;
+   text-indent: -9999em;
+   width: 11em;
+   height: 11em;
+   border-radius: 50%;
+   background: #ffffff;
+   background: -moz-linear-gradient(left, #ffffff 10%, rgba(255, 255, 255, 0) 42%);
+   background: -webkit-linear-gradient(left, #ffffff 10%, rgba(255, 255, 255, 0) 42%);
+   background: -o-linear-gradient(left, #ffffff 10%, rgba(255, 255, 255, 0) 42%);
+   background: -ms-linear-gradient(left, #ffffff 10%, rgba(255, 255, 255, 0) 42%);
+   background: linear-gradient(to right, #ffffff 10%, rgba(255, 255, 255, 0) 42%);
+   position: relative;
+   -webkit-animation: load3 1.4s infinite linear;
+   animation: load3 1.4s infinite linear;
+   -webkit-transform: translateZ(0);
+   -ms-transform: translateZ(0);
+   transform: translateZ(0);
+}
+
+.loader:before {
+   width: 50%;
+   height: 50%;
+   background: #ffffff;
+   border-radius: 100% 0 0 0;
+   position: absolute;
+   top: 0;
+   left: 0;
+   content: '';
+}
+
+.loader:after {
+   background: #2c3e50;
+   width: 75%;
+   height: 75%;
+   border-radius: 50%;
+   content: '';
+   margin: auto;
+   position: absolute;
+   top: 0;
+   left: 0;
+   bottom: 0;
+   right: 0;
+}
+
+@-webkit-keyframes load3 {
+   0% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+   }
+
+   100% {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+   }
+}
+
+@keyframes load3 {
+   0% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+   }
+
+   100% {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+   }
+}
+
+//*__</ DB>
+
+[v-clock] {
+	display: none;
+}
 
 #app {
+   position: relative;
 	font-family: 'Roboto', sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
@@ -20,13 +315,14 @@ $marginCenter: 0 auto;
 	margin-top: 60px;
 
 	img[alt="Vue logo"] {
-		transform: scale(0.6);
+		transform: scale(0.4);
 		border: $border;
 		box-shadow: $boxShadow;
 	}
 
 	h1 {
 		font-weight: bolder;
+		color: $Blue;
 	}
 	h2 {
 		color: green;
@@ -40,7 +336,9 @@ $marginCenter: 0 auto;
 		color: #000;
 		font-weight: 400;
 	}
-
+   h5 {
+      color: white;
+   }
 	ul {
 		list-style-type: none;
 		padding: 0;
@@ -48,104 +346,137 @@ $marginCenter: 0 auto;
 
 	li {
 		display: inline-block;
-		margin: 0 10px;
+		margin: 0 20px;
 	}
-
-	a {
-		color: #42b983;
+   .mtop-0 {
+      margin-top: 0px;
+   }
+	.mbot-25 {
+		margin-bottom: 25px;
 	}
-	.hide {
-		display: none;
+   .mtop-20 {
+      margin-top: 20px;
+   }
+	.text-red {
+		color: red;
 	}
-	.v-calculator {
+	.text-white {
+		color: white;
+	}
+	.t-left {
+		text-align: left;
+	}
+   .bg-white {
+      background-color: #fff;
+   }
+   .bg-blue {
+      background-color: #48617b;
+   }
+   .fixed-left {
+      position: fixed;
+      left: 1%;
+      top: 0;
+   }
+   .absolute-left {
+      //height: 1000px;
+      //overflow-y:scroll;
+      position: absolute;
+      left: 1%;
+      top: -2%;
+      z-index: 50;
+      //background-color: #808080;
+   }
+   .wrapperBD {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border: $border;
+      border-radius: 10px 10px;
+      box-shadow: $boxShadow;
+      width: 600px;
+      height: auto;
+      margin: $marginCenter;
+      //margin-top: 40px;
+      //margin-bottom: 40px;
+      padding: 25px;
+   }
+	.wrapper {
+      position: relative;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		border: $border;
-		border-radius: 15px 55px;
+		border-radius: 10px 10px;
 		box-shadow: $boxShadow;
-		width: 330px;
+		width: 600px;
 		height: auto;
 		margin: $marginCenter;
 		margin-top: 40px;
 		margin-bottom: 40px;
 		padding: 25px;
 	}
-	.form {
-		height: 100%;;
-		margin: 20px 0;
-		background:#ccc;
-		padding: 20px;
-		border-radius: 10px;
-		span.calc b {
-			transform: scale(2.8);
-		}
-
-		span.operand b {
-			transform: scale(1.8);
-		}
-		//.btn-enter:active {
-		//	color: red;
-		//	background: white;
-		//}
-		ul.text-list {
-			margin: 20px 0;
-			text-align: left;
-			font-size: 13px;
-			color:red;
-			box-shadow: inset 0 0 15px 5px rgb(253, 165, 165);
-			background-color: #fff;
-			line-height: 1.4em;
-			padding: 5px;
-			li::before {
-				content: '\002A';
-				display: inline-block;
-				margin-right: 5px;
-				font-weight: bold;
-			}
-		}
-		.btn-group {
-			display:flex;
-			justify-content: space-between;
-			margin: 20px 0;
-			.btn {
-				flex-basis: 25%;
-				margin-left:10px;
-				border-radius:50%;
-				&:first-child {
-					margin-left: 0;
-				}
-			}
-			.symbolL {
-				font-size: 17px;
-				font-weight: bold;
-				line-height: 22px;
-				color: #fff;
-			}
-			.symbolX {
-				font-size: 32px;
-				line-height: 32px;
-				color: #333;
-			}
-			.symbolX1 {
-				font-size: 20px;
-				line-height: 36px;
-				color: #000;
-			}
-			.symbolX2 {
-				font-size: 18px;
-				line-height: 16px;
-				color: #000;
-			}
-			.symbolY {
-				font-size: 22px;
-				line-height: 22px;
-				color: #333;
-			}
-		}
-
+	.header {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		border: $border;
+		border-radius: 55px 55px;
+		box-shadow: $boxShadow;
+		width: 600px;
+		height: auto;
+		margin: $marginCenter;
+		margin-top: 40px;
+		margin-bottom: 40px;
+		padding: 25px;
 	}
-	
-	
+	.costs__table {
+	//position: relative;
+	//	justify-content: center;
+	//	border: $border;
+	//	border-radius: 10px 10px;
+	//	box-shadow: $boxShadow;
+		width: 90%;
+	//	height: auto;
+		margin: $marginCenter;
+	//	margin-top: 40px;
+	//	margin-bottom: 40px;
+	//	padding: 25px;
+//
+	//	&__list {
+//
+	//		&__item {}
+	//	}
+	}
+   .pagination-wrapper {
+      display: flex;
+      justify-content: center;
+   }
+	.costs__form {
+      position: fixed;
+		top: 0;
+		left: 77%;
+		justify-content: center;
+		border: $border;
+		border-radius: 10px 10px;
+		box-shadow: $boxShadow;
+		width: 400px;
+		height: auto;
+		margin: $marginCenter;
+		margin-top: 40px;
+		margin-bottom: 40px;
+		padding: 25px;
+		opacity: 1;
+		//background-color: $input-group-addon-bg;
+
+		.input-group-text {
+			width: 75px;
+         height: 32px;
+			background-color:$input-group-addon-bg ;
+			color: $input-group-addon-color;
+		}
+	}
+
+
 }
 
