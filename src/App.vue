@@ -69,34 +69,6 @@ export default {
       onChangePage(page) {
          this.currentPage = page;
       },
-		//addData(infoStr) {
-		//	if (infoStr.amount == 0 || infoStr.category === '') //{
-		//		alert('"Категория затрат" и "Сумма затрат" //являются обязательными полями!');
-		//	} else if (isNaN(infoStr.amount)) {
-		//		alert('"Сумма затрат" должна быть числом!');
-		//	} else {
-		//		this.paymentsList.push(infoStr);
-		//	}
-		//},
-		//fetchData() {
-		//	return [
-		//		{
-		//			date: '28.03.2020',
-		//			category: 'Food',
-		//			amount: 169
-		//		},
-		//		{
-		//			date: '24.03.2020',
-		//			category: 'Transport',
-		//			amount: 360
-		//		},
-		//		{
-		//			date: '24.03.2020',
-		//			category: 'Cloths',
-		//			amount: 532
-		//		},
-		//	]
-		//},
 	},
 	computed: {
       ...mapGetters({
