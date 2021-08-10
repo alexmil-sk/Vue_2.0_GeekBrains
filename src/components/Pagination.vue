@@ -18,9 +18,6 @@ export default {
 			title: 'Pagination Title'
 
 	}),
-	
+
 }
 </script>
-<style lang="scss">
-	
-</style>
