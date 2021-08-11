@@ -13,7 +13,7 @@
             v-if="costsList.length"
          >
             <tr v-for="(item, idx) in costsList" :key="idx">
-               <th scope="row">{{ idx + 1 }}</th>
+               <th scope="row">{{ idx+ 1 }}</th>
                <td>{{ item.date }}</td>
                <td>{{ toUpperCase (item.category) }}</td>
                <td>{{ item.amount }} &#8381;</td>
@@ -103,7 +103,7 @@ export default {
 		},
       //,__Добавляем в БД
 		async createCost() {
-         const response = await fetch('https://vuejs-2-geekbrains-hw5-default-rtdb.asia-southeast1.firebasedatabase.app/costs.json', {
+         const response = await fetch('https://vuejs-2-geekbrains-hw4-default-rtdb.asia-southeast1.firebasedatabase.app/costs.json', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json'
@@ -133,7 +133,7 @@ export default {
 			this.loading = true;
 			setTimeout(async ()=> {
 				try {
-					const { data } = await axios.get('https://vuejs-2-geekbrains-hw5-default-rtdb.asia-southeast1.firebasedatabase.app/costs.json');
+					const { data } = await axios.get('https://vuejs-2-geekbrains-hw4-default-rtdb.asia-southeast1.firebasedatabase.app/costs.json');
 					if (!data) {
 						throw new Error('Список затрат в БД пуст!');
 					}
@@ -164,7 +164,7 @@ export default {
 			try {
 				const costPositionDel = this.costs.find(cost => cost.key === costKey);
 				console.log(costPositionDel);
-				await axios.delete(`https://vuejs-2-geekbrains-hw5-default-rtdb.asia-southeast1.firebasedatabase.app/costs/${costKey}.json`);
+				await axios.delete(`https://vuejs-2-geekbrains-hw4-default-rtdb.asia-southeast1.firebasedatabase.app/costs/${costKey}.json`);
 				this.costs = this.costs.filter(cost => cost.key !== costKey);
 				this.alert = {
 					class: 'primary',

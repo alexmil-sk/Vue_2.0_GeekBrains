@@ -33,9 +33,6 @@ export default new Vuex.Store({
          console.log(state.categories);
       },
       //,-----------------------------------------
-      addNewCategoryLs(state, payload) {
-         state.categories.push(payload);
-      }
 
    },
    getters: {
@@ -51,7 +48,7 @@ export default new Vuex.Store({
          return new Promise((resolve) => {
             setTimeout(() => {
                const items = [];
-               for (let i = 0; i < 10; i++) {
+               for (let i = 0; i < 3; i++) {
                   items.push({
                      id: i + 1,
                      date: "05.08.2021",
