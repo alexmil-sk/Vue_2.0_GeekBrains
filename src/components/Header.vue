@@ -8,7 +8,7 @@ export default {
 	name: 'Header',
 	data() {
 		return {
-			title: 'Header Title'
+			title: 'MY COSTS CALCULATION'
 		}
 	},
 

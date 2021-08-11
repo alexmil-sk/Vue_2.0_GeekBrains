@@ -1,13 +1,17 @@
 <template>
 	<div id="app">
-      <div>
-         <router-link to='/appdb'> App Data Base |</router-link>
-         <router-link to='/addcostsform'> CostsForm </router-link>
+		<div class="header">
+			<v-header></v-header>
+		</div>
+      <div class="page-links">
+         <router-link to='/dashboard'>Dashboard /</router-link>
+         <router-link to='/about'>About /</router-link>
+         <router-link to='/page404'>Page404</router-link>
       </div>
-      <div class="content">
-         <router-view></router-view>
-      </div>
-
+      <router-view></router-view>
+      <page-dashboard v-if="page==='dashboard'"></page-dashboard>
+      <page-about v-else-if="page==='about'"></page-about>
+      <page-404 v-else-if="page==='page404'"></page-404>
 		<div class="wrapper bg-white">
 			<h1 class="t-left">My personal costs</h1>
          <div class="inline">
@@ -32,32 +36,36 @@
       <h5 class="mbot-25">Total Costs Amount:&nbsp;<span class="badge bg-secondary">{{ getFPV }} &#8381;</span></h5>
       <app-db v-if="showDB"></app-db>
 		<add-costs-form @addInfoStr="addDataStore" v-if="showForm"></add-costs-form>
+
+
+
 	</div>
 </template>
 
 <script>
 import { mapMutations, mapGetters, mapActions } from 'vuex';//,__Преобразовывает мутации в методы и подмешиват их в инстантс того приложения, где мы его вызываем
-import CostsTable from '../components/CostsTable.vue';
-import AddCostsForm from '../components/AddCostsForm.vue';
-import Pagination from '../components/Pagination.vue';
-import AppDb from '../components/db/AppDb.vue';
+import Header from './components/Header.vue';
+import CostsTable from './components/CostsTable.vue';
+import AddCostsForm from './components/AddCostsForm.vue';
+import Pagination from './components/Pagination.vue';
+import AppDb from './components/db/AppDb.vue';
 
 export default {
-	name: 'Dashboard',
+	name: 'App',
 	data() {
 		return {
-         title: '',
 			//paymentsList: [],//,__Удаляем, т.к. paymentslist уже имеется в mapGetters в computed
 			showForm: false,
          showDB: false,
          currentPage: 1,
          nStr: 4,
-         page: '',
+         page: 'dashboard',
 
 		}
 	},
 	components: {
 		'costs-table': CostsTable,
+		'v-header': Header,
 		'add-costs-form': AddCostsForm,
       'v-pagination': Pagination,
       'app-db': AppDb,
@@ -78,7 +86,6 @@ export default {
          this.page = location.hash.slice(1);//, __ Применяется если в href указывается название страницы c #
          console.log(location);
       },
-
 	},
 	computed: {
       ...mapGetters({
@@ -102,7 +109,7 @@ export default {
          },
 
 	},
-	async created() {
+	created() {
 		//this.paymentsList = this.fetchData();
       //this.$store.commit('setPaymentListData', this.fetchData());//,__Заменяем данное выражение выражением из mapMutations
 
@@ -112,10 +119,14 @@ export default {
 
       //this.$store.dispatch('fetchData');//,__Имитация запроса от сервера
 
-      await this.fetchListData();
-      if (this.$route.params.page) {
-         this.onChangePage(this.$route.params.page)
-      }
+      this.fetchListData();
 	},
+   mounted() {
+      this.setPage();
+      window.addEventListener('hashchange', () => {
+         this.setPage();
+      });
+      console.log(this.page);
+   },
 }
 </script>

@@ -97,7 +97,8 @@
 			class="btn btn-danger btn-sm"
 			@click="clearForm"
          :disabled="this.date == '' && this.category == null && this.amount == '' && this.addCat == ''"
-			>Clear Form</button>
+			>Clear Form
+         </button>
 	</div>
 </template>
 <script>
