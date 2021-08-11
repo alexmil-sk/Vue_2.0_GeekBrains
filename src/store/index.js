@@ -33,6 +33,9 @@ export default new Vuex.Store({
          console.log(state.categories);
       },
       //,-----------------------------------------
+      addNewCategoryLs(state, payload) {
+         state.categories.push(payload);
+      }
 
    },
    getters: {

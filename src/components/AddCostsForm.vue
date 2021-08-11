@@ -99,6 +99,16 @@
          :disabled="this.date == '' && this.category == null && this.amount == '' && this.addCat == ''"
 			>Clear Form
          </button>
+
+         <input
+				type="text"
+				class="form-control"
+				aria-label="Sizing example input"
+				aria-describedby="inputGroup-sizing-sm"
+				v-model="category1"
+				placeholder="category1"
+			/>
+         <button class="btn btn-sm btn-danger" @click="addCategory">Добавить</button>
 	</div>
 </template>
 <script>
@@ -113,9 +123,13 @@ export default {
 			amount: '',
          addCat: '',
 			category: null,
+         category1: ''
 		}
 	},
 	methods: {
+      addCategory() {
+         this.$store.commit('addNewCategoryLs', this.category1);
+      },
       ...mapActions([
          'fetchCategoryList'
       ]),
