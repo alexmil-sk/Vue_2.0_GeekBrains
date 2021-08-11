@@ -3,6 +3,14 @@
 		<div class="header">
 			<v-header></v-header>
 		</div>
+      <div class="page-links">
+         <a href="#dashboard">DashBoard /</a>
+         <a href="#about">About /</a>
+         <a href="#page404">Page404 /</a>
+      </div>
+      <page-dashboard v-if="page==='dashboard'"></page-dashboard>
+      <page-about v-else-if="page==='about'"></page-about>
+      <page-404 v-else-if="page==='page404'"></page-404>
 		<div class="wrapper bg-white">
 			<h1 class="t-left">My personal costs</h1>
          <div class="inline">
@@ -28,6 +36,8 @@
       <app-db v-if="showDB"></app-db>
 		<add-costs-form @addInfoStr="addDataStore" v-if="showForm"></add-costs-form>
 
+
+
 	</div>
 </template>
 
@@ -37,7 +47,10 @@ import Header from './components/Header.vue';
 import CostsTable from './components/CostsTable.vue';
 import AddCostsForm from './components/AddCostsForm.vue';
 import Pagination from './components/Pagination.vue';
-import AppDb from './components/db/AppDb.vue'
+import AppDb from './components/db/AppDb.vue';
+import Dashboard from './pages/PageDashboard.vue';
+import PageAbout from './pages/PageAbout.vue';
+import Page404 from './pages/Page404.vue';
 
 
 export default {
@@ -49,6 +62,8 @@ export default {
          showDB: false,
          currentPage: 1,
          nStr: 4,
+         page: 'dashboard',
+
 		}
 	},
 	components: {
@@ -57,6 +72,10 @@ export default {
 		'add-costs-form': AddCostsForm,
       'v-pagination': Pagination,
       'app-db': AppDb,
+      'page-dashboard': Dashboard,
+      'page-about': PageAbout,
+      'page-404': Page404,
+
 	},
 	methods: {
       //...mapMutations([//,__Вариант_1__Написания мутации
@@ -68,6 +87,11 @@ export default {
       }),
       onChangePage(page) {
          this.currentPage = page;
+      },
+      setPage() {
+         //this.page = location.href.slice(22);//, __ Применяется если в href указывается название страницы без #
+         this.page = location.hash.slice(1);//, __ Применяется если в href указывается название страницы c #
+         console.log(location);
       },
 	},
 	computed: {
@@ -103,6 +127,13 @@ export default {
       //this.$store.dispatch('fetchData');//,__Имитация запроса от сервера
 
       this.fetchListData();
-	}
+	},
+   mounted() {
+      this.setPage();
+      window.addEventListener('hashchange', () => {
+         this.setPage();
+      });
+      console.log(this.page);
+   },
 }
 </script>
