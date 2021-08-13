@@ -11,9 +11,8 @@ export default {
 			title: 'Header Title'
 		}
 	},
-	
+
 }
 </script>
-<style lang="scss">
-	
+
 </style>
