@@ -98,7 +98,6 @@
 			@click="clearForm"
          :disabled="this.date == '' && this.category == null && this.amount == '' && this.addCat == ''"
 			>Clear Form</button>
-         <button class="btn btn-warning " @click="sendPayment">Проверить</button>
 	</div>
 </template>
 <script>
