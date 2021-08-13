@@ -98,7 +98,6 @@
 			@click="clearForm"
          :disabled="this.date == '' && this.category == null && this.amount == '' && this.addCat == ''"
 			>Clear Form</button>
-         <button class="btn btn-warning " @click="sendPayment">Проверить</button>
 	</div>
 </template>
 <script>
@@ -108,18 +107,16 @@ export default {
 	name: 'AddCostsForm',
 	data() {
 		return {
-			title: 'Costs Form',
+			title: 'ADD NEW TEMPLATE COST',
 			date: '',
 			amount: '',
          addCat: '',
 			category: null,
 		}
 	},
-	methods: {
-      sendPayment() {
-         console.log(' Значение a: ' + this.$route?.query?.value);
-      },
+   emits: ['addInfoStr'],
 
+	methods: {
       ...mapActions([
          'fetchCategoryList'
       ]),
