@@ -7,7 +7,7 @@
       <add-costs-modal
          :settings="settings"
          v-if="showFormModal"
-         @closeModal='showFormModal=!showFormModal'
+         @closeModal='showFormModal'
       ></add-costs-modal>
       <div class="card navbar navbar-dark bg-primary mt-5">
          <div
@@ -16,12 +16,9 @@
          >
             <div class="card mb-5">
                <button type="button" class="btn btn-success btn-sm mb-3" @click="showFormModalFn">ADD TAMPLATE COSTS FORM</button>
-               <button type="button" class="btn btn-success btn-sm" @click="showAuthModalFn">ADD AUTH`s Form</button>
+               <button type="button" class="btn btn-warning btn-sm" @click="showAuthModalFn">ADD AUTH`s Form</button>
             </div>
             <app-main></app-main>
-         </div>
-         <div class="card text-dark" v-else>
-            <h4>Выберите пункт меню или откройте Сводную таблицу затрат ("COSTS TABLE")</h4>
          </div>
          <router-view></router-view>
       </div>
@@ -51,17 +48,28 @@ export default {
    },
    methods: {
       showFormModalFn() {
-         this.settings.compName = 'addPayment';
-         this.showFormModal = true
+         //this.settings.compName = 'addPayment';
+         //this.showFormModal = true
+         this.$modal.show('AddCostsModal', {header: 'Add Costs Form'});
       },
-      showAuthModalFn() {
-         this.settings.compName = 'addAuth';
-         this.showFormModal = true
+      showAuthModalFn(settings) {
+         //this.settings.compName = 'addAuth';
+         //this.showFormModal = true
+         this.showFormModal = true;
+         this.settings = settings;
       }
    },
    mounted() {
-      this.$modal.show(),
-      this.$modal.hide()
+      //this.$modal.show(),
+      //this.$modal.hide()
+      this.$modal.EventBus.$on('show', this.showFormModalFn);
+      this.$modal.EventBus.$on('hide', this.showFormModalFn);
+   },
+   beforeDestroy() {
+      //this.$modal.show(),
+      //this.$modal.hide()
+      this.$modal.EventBus.$off('show', this.showFormModalFn);
+      this.$modal.EventBus.$off('hide', this.showFormModalFn);
    }
 }
 

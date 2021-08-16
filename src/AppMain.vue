@@ -5,7 +5,6 @@
          v-if="showForm"
       >
       </add-costs-form>
-
 		<div class="wrapper bg-white">
 			<h1 class="t-left">My personal costs</h1>
          <div class="inline">
@@ -58,6 +57,9 @@ export default {
       'v-pagination': Pagination,
 	},
 	methods: {
+      //closeModalForm() {
+
+      //},
       //...mapMutations([//,__Вариант_1__Написания мутации
       //   'setPaymentListData',
       //]),

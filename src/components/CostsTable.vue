@@ -54,13 +54,11 @@
          @getCostsList="loadCostsList"
       >
       </app-costs-list>
-      <v-pagination></v-pagination>
 	</div>
 </template>
 <script>
 import AppCostsList from './db/AppCostsList';
 import axios from 'axios';
-import Pagination from './Pagination.vue';
 
 
 export default {
@@ -92,7 +90,6 @@ export default {
 	},
 	components: {
       'app-costs-list': AppCostsList,
-      'v-pagination': Pagination
 
    },
 	methods: {

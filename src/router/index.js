@@ -1,13 +1,12 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import App from '../App';
-//import AppMain from '../AppMain';
+import TheRegistration from '../pages/TheRegistration';
 import Transport from '../pages/Transport';
 import Food from '../pages/Food';
 import AppDb from '../components/db/AppDb';
 import Entertainment from '../pages/Entertainment';
 import Page404 from '../pages/Page404';
-//import Pagination from '../components/Pagination';
 
 Vue.use(Router);
 
@@ -35,6 +34,10 @@ export default new Router({
       {
          path: '/appdb/:Entertainment',
          component: Entertainment,
+      },
+      {
+         path: '/registration',
+         component: TheRegistration,
       },
       {
          path: '/page404',

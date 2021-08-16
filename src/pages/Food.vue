@@ -63,7 +63,6 @@
                   @click="clearTemplateForm"
                   :disabled="this.categoryTempl == '' && this.amountTempl == '' && this.idTempl == ''"
                >Очистить форму</button>
-
             </div>
          </div>
       </div>
