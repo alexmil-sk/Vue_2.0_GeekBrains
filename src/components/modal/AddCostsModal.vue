@@ -2,7 +2,7 @@
    <div class="modal1 modal-backdrop1">
    <div class="card2">
          <div class="header card">
-            <h1>Form: {{ settings.compName}}</h1>
+            <h1>Form: {{ settings.compName }}</h1>
          </div>
          <div class="content">
             <add-template-form v-if="settings.compName === 'addPayment'"></add-template-form>

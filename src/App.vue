@@ -7,7 +7,7 @@
       <add-costs-modal
          :settings="settings"
          v-if="showFormModal"
-         @closeModal='showFormModal=!showFormModal'
+         @closeModal='onHide'
       ></add-costs-modal>
       <div class="card navbar navbar-dark bg-primary mt-5">
          <div
@@ -50,22 +50,29 @@ export default {
       'add-costs-modal': AddCostsModal,
    },
    methods: {
+      onShow() {
+         this.$modal.show('addPayment', {header: "Add Payment"});
+      },
       showFormModalFn() {
          this.settings.compName = 'addPayment';
-         this.showFormModal = true
+         this.showFormModal = true;
       },
       showAuthModalFn() {
          this.settings.compName = 'addAuth';
          this.showFormModal = true
+      },
+      onHide() {
+         this.showFormModal = false;
+         this.settings = {};
       }
    },
    mounted() {
-      this.$modal.EventBus.$on('show', this.showCostsModalFn);
-      this.$modal.EventBus.$on('hide', this.hideCostsModalFn);
+      this.$modal.EventBus.$on('show', this.showFormModalFn);
+      this.$modal.EventBus.$on('hide', this.onHide);
    },
    beforeDestroy() {
-      this.$modal.EventBus.$off('show', this.showCostsModalFn);
-      this.$modal.EventBus.$off('hide', this.hideCostsModalFn);
+      this.$modal.EventBus.$off('show', this.showFormModalFn);
+      this.$modal.EventBus.$off('hide', this.onHide);
    }
 }
 

@@ -6,7 +6,7 @@
       <add-costs-modal
          :settings="settings"
          v-if="showFormModal"
-         @closeModal='showFormModal=!showFormModal'
+         @closeModal='onHide'
       ></add-costs-modal>
       <button
          type="button"
@@ -28,7 +28,7 @@ export default {
          title: 'Страница регистрации',
          showFormModal: false,
          settings: {
-            compName: 'addPayment'
+            compName: ''
          },
       }
    },
@@ -40,6 +40,11 @@ export default {
       showAuthModalFn() {
          this.settings.compName = 'addAuth';
          this.showFormModal = true;
+         this.$modal.show('theauth', {header: "Auth Form"});
+      },
+      onHide() {
+         this.showFormModal = false;
+         this.settings = {};
       }
    }
 
