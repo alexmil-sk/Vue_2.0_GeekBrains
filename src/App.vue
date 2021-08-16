@@ -60,9 +60,15 @@ export default {
       }
    },
    mounted() {
-      this.$modal.show(),
-      this.$modal.hide()
+      this.$modal.EventBus.$on('show', this.showCostsModalFn);
+      this.$modal.EventBus.$on('hide', this.hideCostsModalFn);
+   },
+   beforeDestroy() {
+      this.$modal.EventBus.$off('show', this.showCostsModalFn);
+      this.$modal.EventBus.$off('hide', this.hideCostsModalFn);
    }
 }
+
+
 
 </script>
