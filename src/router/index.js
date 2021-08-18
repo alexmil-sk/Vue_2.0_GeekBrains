@@ -1,12 +1,12 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-//import App from '../App';
-//import TheRegistration from '../pages/TheRegistration';
+import App from '../App';
+import TheRegistration from '../pages/TheRegistration';
 import Transport from '../pages/Transport';
 import Food from '../pages/Food';
-//import AppDb from '../components/db/AppDb';
+import AppDb from '../components/db/AppDb';
 import Entertainment from '../pages/Entertainment';
-//import Page404 from '../pages/Page404';
+import Page404 from '../pages/Page404';
 
 Vue.use(Router);
 
@@ -15,12 +15,14 @@ export default new Router({
    routes: [
       {
          path: '/app',
-         components: () => import( /* webpackChunkName: "App" */ '../App'),
+         //components: () => import( /* webpackChunkName: "App" */ '../App'),
+         components: App,
          name: 'App'
       },
       {
          path: '/appdb',
-         component: () => import(/* webpackChunkName: "AppDb" */'../components/db/AppDb'),
+         //component: () => import(/* webpackChunkName: "AppDb" */'../components/db/AppDb'),
+         component: AppDb,
          name: 'AppDb',
       },
       {
@@ -40,12 +42,14 @@ export default new Router({
       },
       {
          path: '/registration',
-         component: () => import( /* webpackChunkName: "TheRegistration" */ '../pages/TheRegistration'),
+         //component: () => import( /* webpackChunkName: "TheRegistration" */ '../pages/TheRegistration'),
+         component: TheRegistration,
          name: 'TheRegistration'
       },
       {
          path: '/page404',
-         component: () => import( /* webpackChunkName: "Page404" */ '../pages/Page404'),
+         //component: () => import( /* webpackChunkName: "Page404" */ '../pages/Page404'),
+         component: Page404,
          name: 'Page404'
       },
       //{

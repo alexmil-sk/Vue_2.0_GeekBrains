@@ -32,7 +32,7 @@
             <tr v-for="cost in costs" :key="cost.key">
                <th scope="row">{{ cost.id }}</th>
                <td>{{ cost.date }}</td>
-               <td>{{ toUpperCase (cost.category) }}</td>
+               <td>{{ cost.category }}</td>
                <td>{{ cost.amount }} &#8381;</td>
                <td>
                   <button
@@ -161,7 +161,7 @@ export default {
       async removeCostLine(costKey) {
 			try {
 				const costPositionDel = this.costs.find(cost => cost.key === costKey);
-				console.log(costPositionDel);
+				console.log('costPositionDel');
 				await axios.delete(`https://vuejs-2-geekbrains-hw5-default-rtdb.asia-southeast1.firebasedatabase.app/costs/${costKey}.json`);
 				this.costs = this.costs.filter(cost => cost.key !== costKey);
 				this.alert = {
