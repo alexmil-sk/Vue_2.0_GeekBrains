@@ -3,11 +3,13 @@
       <div class="card text-danger">
          <h1 class="text-primary">{{ title }}</h1>
       </div>
-      <add-costs-modal
-         :settings="settings"
-         v-if="showFormModal"
-         @closeModal='onHide'
-      ></add-costs-modal>
+      <transition name="fade">
+         <add-costs-modal
+            :settings="settings"
+            v-if="showFormModal"
+            @closeModal='onHide'
+         ></add-costs-modal>
+      </transition>
       <button
          type="button"
          class="btn btn-warning btn-sm"
@@ -17,7 +19,6 @@
    </div>
 </template>
 <script>
-//import TheAuth from './TheAuth.vue';
 import AddCostsModal from '../components/modal/AddCostsModal';
 
 
@@ -28,25 +29,45 @@ export default {
          title: 'Страница регистрации',
          showFormModal: false,
          settings: {
-            compName: ''
+            compName: 'addAuth'
          },
       }
    },
     components: {
-     // 'the-auth': TheAuth,
-     'add-costs-modal': AddCostsModal
+      //'add-auth-modal': () => import('../components/modal/AddAuthModal'),
+      'add-costs-modal': AddCostsModal,
+
       },
    methods: {
       showAuthModalFn() {
          this.settings.compName = 'addAuth';
          this.showFormModal = true;
-         this.$modal.show('theauth', {header: "Auth Form"});
+         //this.$modal.show('theauth', {header: "Auth Form"});
       },
       onHide() {
          this.showFormModal = false;
          this.settings = {};
       }
+   },
+   mounted() {
+      this.$modal.EventBus.$on('show', this.showFormModalFn);
+      this.$modal.EventBus.$on('hide', this.onHide);
+   },
+   beforeDestroy() {
+      this.$modal.EventBus.$off('show', this.showFormModalFn);
+      this.$modal.EventBus.$off('hide', this.onHide);
    }
 
 }
 </script>
+<style>
+.fade-enter-active,
+.fade-leave-active {
+   transition: opacity 1s;
+}
+
+.fade-enter,
+.fade-leave-to {
+   opacity: 0;
+}
+</style>

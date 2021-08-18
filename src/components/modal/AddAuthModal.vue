@@ -5,7 +5,6 @@
             <h1>Form: {{ settings.compName }}</h1>
          </div>
          <div class="content">
-            <add-template-form v-if="settings.compName === 'addPayment'"></add-template-form>
             <the-auth v-if="settings.compName === 'addAuth'"></the-auth>
          </div>
          <div class="footer">
@@ -19,7 +18,6 @@
    </div>
 </template>
 <script>
-import AddTemplateForm from '../../pages/AddTemplateForm.vue';
 import TheAuth from '../../pages/TheAuth.vue';
 export default {
    props: {
@@ -28,8 +26,6 @@ export default {
       }
    },
    components: {
-      'add-template-form': AddTemplateForm,
-      //'add-template-form': () => import (/* webpackChunkName: "AddTemplateForm" */'../../pages/AddTemplateForm.vue'),
       'the-auth': TheAuth,
       },
    emits: ['closeModal'],

@@ -4,11 +4,13 @@
          <the-header></the-header>
          <button type="button" class="btn btn-warning btn-sm mb-3" @click="showMain = !showMain">SHOW / HIDE COSTS TABLE</button>
       </div>
-      <add-costs-modal
-         :settings="settings"
-         v-if="showFormModal"
-         @closeModal='onHide'
-      ></add-costs-modal>
+      <transition name="fade">
+         <add-costs-modal
+            :settings="settings"
+            v-if="showFormModal"
+            @closeModal='onHide'
+         ></add-costs-modal>
+      </transition>
       <div class="card navbar navbar-dark bg-primary mt-5">
          <div
             class="card flex just-spB"
@@ -20,6 +22,7 @@
             </div>
             <app-main></app-main>
          </div>
+
          <div class="card text-dark" v-else>
             <h4>Выберите пункт меню или откройте Сводную таблицу затрат ("COSTS TABLE")</h4>
          </div>
@@ -40,7 +43,7 @@ export default {
          showFormModal: false,
          showMain: false,
          settings: {
-            compName: 'addPayment'
+            compName: 'addAuth'
          },
       }
    },
@@ -79,3 +82,14 @@ export default {
 
 
 </script>
+<style>
+.fade-enter-active,
+.fade-leave-active {
+   transition: opacity 1s;
+}
+
+.fade-enter,
+.fade-leave-to {
+   opacity: 0;
+}
+</style>
