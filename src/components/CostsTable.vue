@@ -12,20 +12,37 @@
          <tbody
             v-if="costsList.length"
          >
-            <tr v-for="(item, idx) in costsList" :key="idx">
+            <tr v-for="(item, idx) in costsList" :key="idx"  class="forModal2">
                <th scope="row">{{ idx+ 1 }}</th>
                <td>{{ item.date }}</td>
                <td>{{ toUpperCase (item.category) }}</td>
                <td>{{ item.amount }} &#8381;</td>
                <td>
-                  <button
-                     class="btn btn-danger btn-sm"
-                     @click="removeBtn(idx)"
-                  >x
-                  </button>
+                  <div>
+                     <div id="dots" @click="showMenuModal = !showMenuModal">
+                        ...
+                     </div>
+                  </div>
                </td>
             </tr>
          </tbody>
+         <!--
+          //,-----------------------------------------------
+          -->
+         <div v-if="showMenuModal" class="modal2">
+               <router-link to="/appdb" v-slot="{ navigate }">
+                  <button type="button" class="btn btn-success btn-sm" @click="navigate">
+                     Edit</button>
+               </router-link>
+            <button
+            class="btn btn-danger btn-sm"
+            @click="removeBtn(idx)"
+            >x
+            </button>
+         </div>
+         <!--
+         //,------------------------------------------------
+         -->
          <tbody
             v-if="costs.length"
          >
@@ -86,6 +103,8 @@ export default {
 			costs: [],
 			alert: null,
 			loading: false,
+         showFormModal: false,
+         showMenuModal: false,
 		}
 	},
 	components: {
@@ -95,7 +114,13 @@ export default {
 	methods: {
 		removeBtn(idx) {
 			this.costsListDel.splice(idx, 1);
+
 		},
+      //showMenu() {
+      //
+      //   domRect = element.getBoundingClientRect();
+      //}
+
 		toUpperCase(item) {
 			return item.toUpperCase();
 		},

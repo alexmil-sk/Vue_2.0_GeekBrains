@@ -18,7 +18,7 @@
                <button type="button" class="btn btn-success btn-sm" @click="showForm = !showForm">ADD WITH COSTS FORM</button>
             </div>
          </div>
-			<costs-table
+			<costs-table v-if="showCostsTable"
             :costsList="currentElems"
             :costsListDel="paymentsList"
          ></costs-table>
@@ -49,6 +49,7 @@ export default {
          showDB: false,
          currentPage: 1,
          nStr: 4,
+         showCostsTable: true,
 		}
 	},
 	components: {
