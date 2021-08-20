@@ -24,6 +24,12 @@
                   >x
                   </button>
                </td>
+               <td>
+                  <edit-modal-window
+
+                  >
+                  </edit-modal-window>
+               </td>
             </tr>
          </tbody>
          <tbody
@@ -59,6 +65,7 @@
 <script>
 import AppCostsList from './db/AppCostsList';
 import axios from 'axios';
+import EditModalWindow from './modal/editModalWindow.vue';
 
 
 export default {
@@ -90,6 +97,7 @@ export default {
 	},
 	components: {
       'app-costs-list': AppCostsList,
+      'edit-modal-window':EditModalWindow,
 
    },
 	methods: {
@@ -99,6 +107,9 @@ export default {
 		toUpperCase(item) {
 			return item.toUpperCase();
 		},
+      //delPluginStr() {
+      //   this.costsListDel.splice(this.idx, 1);
+      //},
       //,__Добавляем в БД
 		async createCost() {
          const response = await fetch('https://vuejs-2-geekbrains-hw5-default-rtdb.asia-southeast1.firebasedatabase.app/costs.json', {
@@ -178,12 +189,19 @@ export default {
 				}
 			}
 
-		}
+		},
+
 
 	},
 	computed: {},
    mounted() {
-		this.loadCostsList()
-	}
+		this.loadCostsList();
+         this.$log.EventBus.$on('delStr', this.delPluginStr);
+
+	},
+   beforeDestroy() {
+      this.$log.EventBus.$off('delStr', this.delPluginStr);
+
+   }
 };
 </script>

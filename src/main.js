@@ -5,12 +5,14 @@ import './style.scss';
 import store from './store';
 import router from './router';
 import modalWindow from './plugins/ModalWindow';
+import Editor from './plugins/Editor';
 
 
+Vue.use(modalWindow);
+Vue.use(Editor);
 
 Vue.config.productionTip = false;
 
-Vue.use(modalWindow);
 
 new Vue({
    render: h => h(App),
@@ -18,3 +20,4 @@ new Vue({
    axios,
    router
 }).$mount('#app');
+
