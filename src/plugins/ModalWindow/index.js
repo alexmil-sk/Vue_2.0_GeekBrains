@@ -1,23 +1,22 @@
-export default {
+
+export default ({
    install(Vue) {
 
       if (this.installed) {
          return
       }
+
       this.installed = true;
 
-      Vue.prototype.$log = {
+      Vue.prototype.$modal = {
          EventBus: new Vue(),
-         editStr(name, settings) {
-            this.EventBus.$emit('editStr', {
-               name,
-               ...settings
-            });
+         show(name, settings) {
+            //debugger
+            this.EventBus.$emit('show', { name, ...settings });
          },
-         delStr() {
-            this.EventBus.$emit('delStr');
+         hide() {
+            this.EventBus.$emit('hide');
          },
-
-      }
-   }
-}
+      };
+   },
+});
