@@ -109,12 +109,15 @@ export default {
             {
                text: 'Редактировать',
                action: () => {
+                  this.$modal.show('', {editedItem: this.item})
                   console.log('Редактировать', item);
                }
             },
             {
                text: 'Удалить',
                action: () => {
+                  this.removeBtn();
+                  this.$modal.hide(this.item);
                   console.log('Удалить', item);
                }
             }

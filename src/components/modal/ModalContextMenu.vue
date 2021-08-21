@@ -55,7 +55,7 @@ export default {
    computed: {
       styles() {
          return {
-            top: `${this.yPos + 60}px`,
+            top: `${this.yPos + 30}px`,
             left: `${this.xPos + 30}px`
          }
       }
