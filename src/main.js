@@ -5,11 +5,12 @@ import './style.scss';
 import store from './store';
 import router from './router';
 import modalWindow from './plugins/ModalWindow';
-import Editor from './plugins/Editor';
+import contextMenu from './plugins/ContextMenu';
+
 
 
 Vue.use(modalWindow);
-Vue.use(Editor);
+Vue.use(contextMenu);
 
 Vue.config.productionTip = false;
 

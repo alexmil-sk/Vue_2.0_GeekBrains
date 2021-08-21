@@ -25,10 +25,12 @@
                   </button>
                </td>
                <td>
-                  <edit-modal-window
-
-                  >
-                  </edit-modal-window>
+                  <span class="relative" @click="onContextMenuClick($event, item)">...</span>
+                  <!--
+                  <transition name="fade">
+                     <modal-context-menu></modal-context-menu>
+                  </transition>
+                   -->
                </td>
             </tr>
          </tbody>
@@ -65,7 +67,7 @@
 <script>
 import AppCostsList from './db/AppCostsList';
 import axios from 'axios';
-import EditModalWindow from './modal/editModalWindow.vue';
+//import ModalContextMenu from './modal/ModalContextMenu.vue';
 
 
 export default {
@@ -97,10 +99,28 @@ export default {
 	},
 	components: {
       'app-costs-list': AppCostsList,
-      'edit-modal-window':EditModalWindow,
+      //'modal-context-menu': ModalContextMenu
 
    },
 	methods: {
+      onContextMenuClick(event, item) {
+         console.log(event);
+         const items = [
+            {
+               text: 'Редактировать',
+               action: () => {
+                  console.log('Редактировать', item);
+               }
+            },
+            {
+               text: 'Удалить',
+               action: () => {
+                  console.log('Удалить', item);
+               }
+            }
+         ];
+         this.$context.show({event, items});
+      },
 		removeBtn(idx) {
 			this.costsListDel.splice(idx, 1);
 		},
@@ -195,12 +215,9 @@ export default {
 	},
 	computed: {},
    mounted() {
-		this.loadCostsList();
-         this.$log.EventBus.$on('delStr', this.delPluginStr);
 
 	},
    beforeDestroy() {
-      this.$log.EventBus.$off('delStr', this.delPluginStr);
 
    }
 };

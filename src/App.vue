@@ -11,6 +11,9 @@
             @closeModal='onHide'
          ></add-costs-modal>
       </transition>
+      <transition name="fade">
+         <modal-context-menu></modal-context-menu>
+      </transition>
       <div class="card navbar navbar-dark bg-primary mt-5">
          <div
             class="card flex just-spB"
@@ -35,6 +38,7 @@
 import Header from './components/Header';
 import AppMain from './AppMain.vue';
 import AddCostsModal from './components/modal/AddCostsModal';
+import ModalContextMenu from './components/modal/ModalContextMenu.vue';
 
 export default {
    name: 'App',
@@ -51,6 +55,7 @@ export default {
       'the-header': Header,
       'app-main': AppMain,
       'add-costs-modal': AddCostsModal,
+      'modal-context-menu': ModalContextMenu,
    },
    methods: {
       onShow() {

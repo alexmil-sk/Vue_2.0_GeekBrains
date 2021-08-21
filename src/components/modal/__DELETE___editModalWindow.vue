@@ -26,6 +26,13 @@
             v-if="showDb"
          >
          </app-db>
+         <footer>
+            <button
+               class="btn btn-danger"
+               @click="closeModal"
+            >Close
+            </button>
+         </footer>
    </div>
 </template>
 
