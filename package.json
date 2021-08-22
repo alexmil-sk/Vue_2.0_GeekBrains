@@ -9,7 +9,10 @@
 	 "test": "jest"
   },
   "jest": {
-
+		"moduleFileExtensions": ["js", "vue"],
+		"transform": {
+			".*\\.(vue)$": "root",
+		}
   },
   "dependencies": {
     "core-js": "^3.16.2",
