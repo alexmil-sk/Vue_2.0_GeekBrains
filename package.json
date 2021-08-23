@@ -11,7 +11,8 @@
   "jest": {
 		"moduleFileExtensions": ["js", "vue"],
 		"transform": {
-			".*\\.(vue)$": "root",
+			".*\\.(vue)$": "<rootDir>/node_modules/vue-jest",
+			"^.+\\.js$": "<rootDir>/node_modules/babel-jest"
 		}
   },
   "dependencies": {
