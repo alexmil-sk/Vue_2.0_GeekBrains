@@ -7,6 +7,7 @@
 			<div class="input-group mb-3">
 				<span class="input-group-text operand" id="basic-addon1"><b>&#35;</b></span>
 				<input 
+					data-test="operand1"
 					:style="{
 						color: this.result === 'Ошибка ввода!!!' ? 'red' : 'gray',
 						background: this.result === 'Ошибка ввода!!!' ? 'yellow' : '',
@@ -26,6 +27,7 @@
 			<!-- //,__<OPERATION>------------------------------>
 			<div class="input-group mb-3" v-if="result">
 				<input
+					data-test="inputOp"
 					type="text"
 					class="form-control"
 					:class="{'notes': result}"
@@ -47,6 +49,7 @@
 			<div class="input-group mb-3">
 				<span class="input-group-text operand" id="basic-addon2"><b>&#35;</b></span>
 				<input
+					data-test="operand2"
 					:style="{
 						color: this.result === 'Ошибка ввода!!!' ? 'red' : 'gray',
 						background: this.result === 'Ошибка ввода!!!' ? 'yellow' : '',
@@ -276,6 +279,7 @@
 					:title="operations.titles[idx]"
 					@click="calculate(operation)"
 					:disabled="result !== ''"
+					:value = "operation"
 				>{{ operation }}
 				</button>
 			</div>
