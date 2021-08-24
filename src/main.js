@@ -1,24 +1,9 @@
 import Vue from 'vue';
-import axios from 'axios';
 import App from './App.vue';
 import './style.scss';
-import store from './store';
-import router from './router';
-import modalWindow from './plugins/ModalWindow';
-import contextMenu from './plugins/ContextMenu';
-
-
-
-Vue.use(modalWindow);
-Vue.use(contextMenu);
 
 Vue.config.productionTip = false;
 
-
 new Vue({
-   render: h => h(App),
-   store,
-   axios,
-   router
+	render: h => h(App),
 }).$mount('#app');
-
