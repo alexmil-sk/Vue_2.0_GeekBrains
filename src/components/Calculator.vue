@@ -89,7 +89,7 @@
 							</button>
 							<button
 								type="button"
-								name="delNum"
+								name="delKeyNum"
 								class="btn btn-outline-secondary ml-5 mtop-5 dark-btn plr-6"
 								@click="delKeyNum"
 								:disabled="result !== ''"

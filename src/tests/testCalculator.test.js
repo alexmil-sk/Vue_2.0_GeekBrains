@@ -270,10 +270,8 @@ describe('Calculator test keyboard', () => {
 				const wrapper = mount(Calculator);
 				const cleanNum = wrapper.find('button[name="cleanNum"]');
 				const op1 = wrapper.find('input[data-test=operand1]');
-				//const op2 = wrapper.find('input[data-test=operand2]');
 				//,__Вариант-1 написания
 				op1.setValue(1);
-				//keyboardNum.setValue(1);
 				cleanNum.trigger('click');
 				//,__Вариант-2 написания
 				//op1.element.value = '1';
@@ -299,4 +297,36 @@ describe('Calculator test keyboard', () => {
 				//,__Expect
 				expect(wrapper.vm.operand2).toBe(NaN);
 			});
+
+			it('Test delKeyNum button operand1', () => {
+				const wrapper = mount(Calculator);
+				const delKeyNum = wrapper.find('button[name="delKeyNum"]');
+				const op1 = wrapper.find('input[data-test=operand1]');
+				//,__Вариант-1 написания
+				op1.setValue(123);
+				delKeyNum.trigger('click');
+				//,__Вариант-2 написания
+				//op1.element.value = '1';
+				//op1.trigger('input');
+				//,__Expect
+				expect(wrapper.vm.operand2).toBe('');
+			});
+	
+			it('Test delKeyNum button operand2', () => {
+				const wrapper = mount(Calculator);
+				const delKeyNum = wrapper.find('button[name="delKeyNum"]');
+				const checkboxOperand = wrapper.find('input[name="radioOperand2"]');
+				const op2 = wrapper.find('input[data-test=operand2]');
+				//,__Вариант-1 написания
+				checkboxOperand.setChecked(true);
+				op2.setValue(123);
+				//keyboardNum.setValue(1);
+				delKeyNum.trigger('click');
+				//,__Вариант-2 написания
+				//op1.element.value = '1';
+				//op1.trigger('input');
+				//,__Expect
+				expect(wrapper.vm.operand2).toBe('Введите 2-й операнд');
+			});
+		
 });
