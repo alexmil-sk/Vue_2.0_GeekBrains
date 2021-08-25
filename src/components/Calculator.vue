@@ -7,6 +7,7 @@
 			<div class="input-group mb-3">
 				<span class="input-group-text operand" id="basic-addon1"><b>&#35;</b></span>
 				<input 
+					data-test="operand1"
 					:style="{
 						color: this.result === 'Ошибка ввода!!!' ? 'red' : 'gray',
 						background: this.result === 'Ошибка ввода!!!' ? 'yellow' : '',
@@ -26,6 +27,7 @@
 			<!-- //,__<OPERATION>------------------------------>
 			<div class="input-group mb-3" v-if="result">
 				<input
+					data-test="inputOp"
 					type="text"
 					class="form-control"
 					:class="{'notes': result}"
@@ -47,6 +49,7 @@
 			<div class="input-group mb-3">
 				<span class="input-group-text operand" id="basic-addon2"><b>&#35;</b></span>
 				<input
+					data-test="operand2"
 					:style="{
 						color: this.result === 'Ошибка ввода!!!' ? 'red' : 'gray',
 						background: this.result === 'Ошибка ввода!!!' ? 'yellow' : '',
@@ -86,6 +89,7 @@
 							</button>
 							<button
 								type="button"
+								name="delKeyNum"
 								class="btn btn-outline-secondary ml-5 mtop-5 dark-btn plr-6"
 								@click="delKeyNum"
 								:disabled="result !== ''"
@@ -94,6 +98,7 @@
 							</button>
 							<button
 								type="button"
+								name="cleanNum"
 								class="btn btn-outline-dark ml-5 mtop-5 dark-btn plr-6"
 								@click="cleanNum"
 								:disabled="result !== ''"
@@ -119,6 +124,7 @@
 						<div class="form-check mbot-15 left">
 							<input
 								class="form-check-input"
+								name="radioOperand2"
 								type="radio"
 								value="operand2"
 								id="operand2"
@@ -276,6 +282,7 @@
 					:title="operations.titles[idx]"
 					@click="calculate(operation)"
 					:disabled="result !== ''"
+					:value = "operation"
 				>{{ operation }}
 				</button>
 			</div>

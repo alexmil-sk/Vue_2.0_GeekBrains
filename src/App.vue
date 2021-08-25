@@ -11,7 +11,7 @@
 
 <script>
 import HelloWorld from './components/HelloWorld.vue';
-import Calculator from './components/v-calculator.vue';
+import Calculator from './components/Calculator.vue';
 import logoVue from './assets/logo.png';
 
 export default {
