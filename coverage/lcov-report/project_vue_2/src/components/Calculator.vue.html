@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">77% </span>
+                <span class="strong">82% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>77/100</span>
+                <span class='fraction'>82/100</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">84.15% </span>
+                <span class="strong">86.59% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>69/82</span>
+                <span class='fraction'>71/82</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">75% </span>
+                <span class="strong">80% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>15/20</span>
+                <span class='fraction'>16/20</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">77% </span>
+                <span class="strong">82% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>77/100</span>
+                <span class='fraction'>82/100</span>
             </div>
         
             
@@ -55,7 +55,7 @@
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -594,7 +594,10 @@
 <a name='L535'></a><a href='#L535'>535</a>
 <a name='L536'></a><a href='#L536'>536</a>
 <a name='L537'></a><a href='#L537'>537</a>
-<a name='L538'></a><a href='#L538'>538</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L538'></a><a href='#L538'>538</a>
+<a name='L539'></a><a href='#L539'>539</a>
+<a name='L540'></a><a href='#L540'>540</a>
+<a name='L541'></a><a href='#L541'>541</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -911,7 +914,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">19x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">21x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1109,12 +1115,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1222,6 +1228,7 @@
 							&lt;/button&gt;
 							&lt;button
 								type="button"
+								name="delNum"
 								class="btn btn-outline-secondary ml-5 mtop-5 dark-btn plr-6"
 								@click="delKeyNum"
 								:disabled="result !== ''"
@@ -1230,6 +1237,7 @@
 							&lt;/button&gt;
 							&lt;button
 								type="button"
+								name="cleanNum"
 								class="btn btn-outline-dark ml-5 mtop-5 dark-btn plr-6"
 								@click="cleanNum"
 								:disabled="result !== ''"
@@ -1255,6 +1263,7 @@
 						&lt;div class="form-check mbot-15 left"&gt;
 							&lt;input
 								class="form-check-input"
+								name="radioOperand2"
 								type="radio"
 								value="operand2"
 								id="operand2"
@@ -1645,13 +1654,13 @@ export default {
 <span class="cstat-no" title="statement not covered" >				this.operands2 = [];</span>
 			}
 		},
-<span class="fstat-no" title="function not covered" >		cleanNum() {</span>
-<span class="cstat-no" title="statement not covered" >			if (this.radioOperand === 'operand1') {</span>
-<span class="cstat-no" title="statement not covered" >				this.operands1 = this.operands1.slice(0, this.operands1.length-1);</span>
-<span class="cstat-no" title="statement not covered" >				this.operand1 = parseInt(this.operands1.join(""));</span>
+		cleanNum() {
+			if (this.radioOperand === 'operand1') {
+				this.operands1 = this.operands1.slice(0, this.operands1.length-1);
+				this.operand1 = parseInt(this.operands1.join(""));
 			} else {
-<span class="cstat-no" title="statement not covered" >				this.operands2 = this.operands2.slice(0, this.operands2.length-1);</span>
-<span class="cstat-no" title="statement not covered" >				this.operand2 = parseInt(this.operands2.join(""));</span>
+				this.operands2 = this.operands2.slice(0, this.operands2.length-1);
+				this.operand2 = parseInt(this.operands2.join(""));
 			}
 			//Рекомендация преподавателя
 			//this[this.radioOperand] = + String(this[this.radioOperand]).slice(0,-1);
@@ -1675,7 +1684,7 @@ export default {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Wed Aug 25 2021 13:08:00 GMT+0200 (Центральная Европа, летнее время)
+                at Wed Aug 25 2021 17:09:09 GMT+0200 (Центральная Европа, летнее время)
             </div>
         </div>
         <script src="../../../prettify.js"></script>

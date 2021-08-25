@@ -89,6 +89,7 @@
 							</button>
 							<button
 								type="button"
+								name="delNum"
 								class="btn btn-outline-secondary ml-5 mtop-5 dark-btn plr-6"
 								@click="delKeyNum"
 								:disabled="result !== ''"
@@ -97,6 +98,7 @@
 							</button>
 							<button
 								type="button"
+								name="cleanNum"
 								class="btn btn-outline-dark ml-5 mtop-5 dark-btn plr-6"
 								@click="cleanNum"
 								:disabled="result !== ''"
@@ -122,6 +124,7 @@
 						<div class="form-check mbot-15 left">
 							<input
 								class="form-check-input"
+								name="radioOperand2"
 								type="radio"
 								value="operand2"
 								id="operand2"

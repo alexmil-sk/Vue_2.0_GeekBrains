@@ -265,5 +265,38 @@ describe('Calculator test operation', () => {
 	});
 });
 
-
-
+describe('Calculator test keyboard', () => {
+			it('Test cleanNum button operand1', () => {
+				const wrapper = mount(Calculator);
+				const cleanNum = wrapper.find('button[name="cleanNum"]');
+				const op1 = wrapper.find('input[data-test=operand1]');
+				//const op2 = wrapper.find('input[data-test=operand2]');
+				//,__Вариант-1 написания
+				op1.setValue(1);
+				//keyboardNum.setValue(1);
+				cleanNum.trigger('click');
+				//,__Вариант-2 написания
+				//op1.element.value = '1';
+				//op1.trigger('input');
+				//,__Expect
+				//expect(wrapper.vm.operands2).toBe([1]);
+				expect(wrapper.vm.operand1).toBe(NaN);
+			});
+	
+			it('Test cleanNum button operand2', () => {
+				const wrapper = mount(Calculator);
+				const cleanNum = wrapper.find('button[name="cleanNum"]');
+				const checkboxOperand = wrapper.find('input[name="radioOperand2"]');
+				const op2 = wrapper.find('input[data-test=operand2]');
+				//,__Вариант-1 написания
+				checkboxOperand.setChecked(true);
+				op2.setValue(1);
+				//keyboardNum.setValue(1);
+				cleanNum.trigger('click');
+				//,__Вариант-2 написания
+				//op1.element.value = '1';
+				//op1.trigger('input');
+				//,__Expect
+				expect(wrapper.vm.operand2).toBe(NaN);
+			});
+});
