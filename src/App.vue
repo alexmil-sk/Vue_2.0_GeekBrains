@@ -38,14 +38,20 @@
     </v-app-bar>
 
     <v-main>
+		<v-app-old></v-app-old>
       <router-view/>
     </v-main>
   </v-app>
 </template>
 
 <script>
+import App_ from './App_.vue';
+
 
 export default {
+	components: {
+		'v-app-old': App_,
+	},
   name: 'App',
 
   data: () => ({
