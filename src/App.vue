@@ -1,32 +1,61 @@
 <template>
-	<div id="app">
-		<img alt="Vue logo" :src="srcLogo">
-		<HelloWorld
-			msg="Welcome to Your Vue.js App"
-		/>
-		<v-calculator class="v-calculator" msg="Vue.JS 2.0" />
+  <v-app>
+    <v-app-bar
+      app
+      color="primary"
+      dark
+    >
+      <div class="d-flex align-center">
+        <v-img
+          alt="Vuetify Logo"
+          class="shrink mr-2"
+          contain
+          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
+          transition="scale-transition"
+          width="40"
+        />
 
-	</div>
+        <v-img
+          alt="Vuetify Name"
+          class="shrink mt-1 hidden-sm-and-down"
+          contain
+          min-width="100"
+          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
+          width="100"
+        />
+      </div>
+
+      <v-spacer></v-spacer>
+
+      <v-btn
+        href="https://github.com/vuetifyjs/vuetify/releases/latest"
+        target="_blank"
+        text
+      >
+        <span class="mr-2">Latest Release</span>
+        <v-icon>mdi-open-in-new</v-icon>
+      </v-btn>
+    </v-app-bar>
+
+    <v-main>
+		<v-app-old></v-app-old>
+      <router-view/>
+    </v-main>
+  </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue';
-import Calculator from './components/v-calculator.vue';
-import logoVue from './assets/logo.png';
+import App_ from './App_.vue';
+
 
 export default {
-	name: 'App',
-	data() {
-		return {
-			srcLogo: logoVue,
-		}
-	},
 	components: {
-		HelloWorld,
-		'v-calculator': Calculator,
-		//'Calculator': Calculator
-		//Calculator: Calculator
-		//Calculator
-	}
-}
+		'v-app-old': App_,
+	},
+  name: 'App',
+
+  data: () => ({
+    //
+  }),
+};
 </script>
