@@ -1,9 +1,9 @@
 <template>
     <div id="#app">
-      <div class="card navbar navbar-dark bg-primary mt-5">
-         <the-header></the-header>
-         <button type="button" class="btn btn-warning btn-sm mb-3" @click="showMain = !showMain">SHOW / HIDE COSTS TABLE</button>
-      </div>
+				<div class="card navbar navbar-dark bg-primary mt-5">
+					<the-header></the-header>
+					<button type="button" class="btn btn-warning btn-sm mb-3" @click="showMain = !showMain">SHOW / HIDE COSTS TABLE</button>
+				</div>
       <transition name="fade">
          <add-costs-modal
             :settings="settings"
@@ -19,7 +19,7 @@
             class="card flex just-spB"
             v-if="showMain"
          >
-            <div class="card mb-5">
+				<div class="card mb-5" >
                <button type="button" class="btn btn-success btn-sm mb-3" @click="showFormModalFn">ADD TAMPLATE COSTS FORM</button>
                <button type="button" class="btn btn-success btn-sm" @click="showAuthModalFn">ADD AUTH`s Form</button>
             </div>

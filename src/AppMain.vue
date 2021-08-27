@@ -9,7 +9,7 @@
 			<h1 class="t-left">My personal costs</h1>
          <div class="inline">
             <div>
-               <router-link to="/appdb" v-slot="{ navigate }">
+               <router-link to="/vappdb" v-slot="{ navigate }">
                   <button type="button" class="btn btn-success btn-sm" @click="navigate">
                      ADD WITH HTTP DB</button>
                </router-link>
@@ -18,10 +18,10 @@
                <button type="button" class="btn btn-success btn-sm" @click="showForm = !showForm">ADD WITH COSTS FORM</button>
             </div>
          </div>
-			<costs-table
+			<v-costs-table
             :costsList="currentElems"
             :costsListDel="paymentsList"
-         ></costs-table>
+         ></v-costs-table>
 		</div>
       <v-pagination
          :currentPage="currentPage"
@@ -29,14 +29,14 @@
          :quantElems="paymentsList.length"
          @getPage="onChangePage"
       ></v-pagination>
-      <h5 class="mbot-25">Total Costs Amount:&nbsp;<span class="badge bg-secondary">{{ getFPV }} &#8381;</span></h5>
+      <h3 class="mbot-25">Total Costs Amount:&nbsp;<span class="badge bg-secondary">{{ getFPV }} &#8381;</span></h3>
 	</div>
 </template>
 
 <script>
 import { mapMutations, mapGetters, mapActions } from 'vuex';//,__Преобразовывает мутации в методы и подмешиват их в инстантс того приложения, где мы его вызываем
-import CostsTable from './components/CostsTable.vue';
-import AddCostsForm from './components/AddCostsForm.vue';
+import vCostsTable from './components/vCostsTable.vue';
+import vAddCostsForm from './components/vAddCostsForm.vue';
 import Pagination from './components/Pagination.vue';
 
 
@@ -52,8 +52,8 @@ export default {
 		}
 	},
 	components: {
-		'costs-table': CostsTable,
-		'add-costs-form': AddCostsForm,
+		'v-costs-table': vCostsTable,
+		'add-costs-form': vAddCostsForm,
       'v-pagination': Pagination,
 	},
 	methods: {

@@ -1,13 +1,12 @@
 <template>
-	<div class="alert" v-if="alert" :class="alert.class">
+	<div class="alert danger" v-if="alert" color="yellow">
 		<h3>{{ alert.title }}</h3>
 		<p>{{ alert.text }}</p>
-		<button
-			class="btn btn-danger"
-			:class="alert.type"
+		<v-btn
+			color="error"
 			@click="$emit('closeEr')"
 		>Закрыть
-		</button>
+		</v-btn>
 	</div>
 </template>
 <script>
@@ -16,6 +15,4 @@ export default {
 	emits: ['closeEr'],
 }
 </script>
-<style>
 
-</style>

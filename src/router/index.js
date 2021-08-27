@@ -4,7 +4,8 @@ import App from '../App';
 import TheRegistration from '../pages/TheRegistration';
 import Transport from '../pages/Transport';
 import Food from '../pages/Food';
-import AppDb from '../components/db/AppDb';
+import vAppDb from '../components/db/vAppDb';
+import vTheCalculator from '../components/vTheСalculator';
 import Entertainment from '../pages/Entertainment';
 import Page404 from '../pages/Page404';
 
@@ -20,23 +21,23 @@ export default new Router({
          name: 'App'
       },
       {
-         path: '/appdb',
+         path: '/vappdb',
          //component: () => import(/* webpackChunkName: "AppDb" */'../components/db/AppDb'),
-         component: AppDb,
-         name: 'AppDb',
+         component: vAppDb,
+         name: 'vAppDb',
       },
       {
-         path: '/appdb/:Food',
+         path: '/vappdb/:Food',
          component: Food,
          name: 'Food',
       },
       {
-         path: '/appdb/:Transport',
+         path: '/vappdb/:Transport',
          component: Transport,
          name: 'Transport',
       },
       {
-         path: '/appdb/:Entertainment',
+         path: '/vappdb/:Entertainment',
          component: Entertainment,
          name: 'Entertainment',
       },
@@ -45,7 +46,13 @@ export default new Router({
          //component: () => import( /* webpackChunkName: "TheRegistration" */ '../pages/TheRegistration'),
          component: TheRegistration,
          name: 'TheRegistration'
-      },
+		},
+		{
+			path: '/vcalc',
+			//component: () => import( /* webpackChunkName: "TheCalculator" */ '../components/vTheСalculator'),
+			component: vTheCalculator,
+			name: 'vTheCalculator'
+		},
       {
          path: '/page404',
          //component: () => import( /* webpackChunkName: "Page404" */ '../pages/Page404'),
