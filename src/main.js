@@ -6,7 +6,7 @@ import store from './store';
 import router from './router';
 import modalWindow from './plugins/ModalWindow';
 import contextMenu from './plugins/ContextMenu';
-import vuetify from './plugins/vuetify'
+import vuetify from './plugins/vuetify';
 
 
 
@@ -21,6 +21,6 @@ new Vue({
    store,
    axios,
    vuetify,
-   router
+	router
 }).$mount('#app');
 
