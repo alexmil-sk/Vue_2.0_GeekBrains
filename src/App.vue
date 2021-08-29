@@ -39,17 +39,7 @@
 
     <v-main>
 		<v-app-old></v-app-old>
-		<div class="flex flex-end">
-			<div   class="w500">
-				<doughnut-chart></doughnut-chart>
-			</div>
-			<div  class="w500">
-				<bar-chart></bar-chart>
-			</div>
-			<div  class="w500">
-				<polararea-chart></polararea-chart>
-			</div>
-		</div>
+		<the-charts></the-charts>
       <router-view/>
     </v-main>
   </v-app>
@@ -57,18 +47,12 @@
 
 <script>
 import App_ from './App_.vue';
-import DoughnutChart from './components/charts/DoughnutChart.vue';
-import BarChart from './components/charts/BarChart.vue';
-import PolarAreaChart from './components/charts/PolarAreaChart.vue';
-
-
+import TheCharts from './pages/TheCharts';
 
 export default {
 	components: {
 		'v-app-old': App_,
-		'doughnut-chart': DoughnutChart,
-		'bar-chart': BarChart,
-		'polararea-chart': PolarAreaChart
+		'the-charts': TheCharts
 	},
   name: 'App',
 
